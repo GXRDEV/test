@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" class="txt1">
+	<input type="text" class="txt2">
+	<input type="text" class="txt3">
+	<table border="1" width="400px">
+		<thead>
+			<td>姓名</td>
+			<td>性别</td>
+			<td>年龄</td>
+			<td>爱好</td>
+			<td>操作</td>
+		</thead>
+	</table>
+	<input type="button" id="btn" value="点击添加">
+	<script src="js/jquery1.7.js"></script>
+	<script>
+		$(function(){
+			//增
+			$("#btn").on("click",function(){
+				var txt1=$(".txt1").val()
+				var txt2=$(".txt2").val()
+				var txt3=$(".txt3").val()
+				var trs="<tr><td>"+txt1+"</td><td>"+txt2+"</td><td>18</td><td>"+txt3+"</td><td><a href='javascript:;;'>删除</a></td></tr>"
+				//前追加prepend
+				/*$("table").prepend($(trs))*/
+				//后追加append
+				$("table").append($(trs))
+			})
+			//删
+			$("table").on("click","a",function(){
+				$(this).parent().parent().remove()
+			})
+		})
+	</script>
+</body>
+</html>

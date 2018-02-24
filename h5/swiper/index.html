@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    img{
+        width: 100%;
+    }
+    .swiper-container{
+        width: 100%;
+    }
+    .box{
+        position: absolute;
+        z-index: 100;
+        text-align: center;
+        border-radius: 0px;
+    }
+    /*  使圆点被成为方块  */
+    .swiper-pagination-bullet{
+        border-radius: 0 !important;
+    }
+    li{
+        list-style: none;
+        float: left;
+        width: 25%;
+        text-align: center;
+    }
+    .lis{
+        color: #0cc042;
+    }
+</style>
+<link rel="stylesheet" href="./css/swiper.css">
+<body>
+    <div class="nav">
+        <ul>
+            <li>asd</li>
+            <li>asd</li>
+            <li>asd</li>
+            <li>asd</li>
+        </ul>
+    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="./images/1.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="./images/2.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="./images/3.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="./images/4.jpg" alt=""></div>
+        </div>
+        <div class="box"></div>
+    </div>
+    <script src="./js/zepto.min.js"></script>
+    <script src="./js/swiper.js"></script>
+    <script>
+
+        var num;
+        var mySwiper =new Swiper('.swiper-container',{
+            //loop:true,
+            pagination:".box",
+            //可点击的下标
+            paginationClickable :true,
+            onSlideChangeStart:function(swiper){
+                num=swiper.activeIndex;
+                $("li").eq(num).addClass("lis").siblings().removeClass()
+            }
+        });
+        $('li').click(function(){
+            var ind=$(this).index();
+            $(this).addClass("lis").siblings().removeClass()
+            mySwiper.slideTo(ind, 300, false);
+        })
+
+
+    </script>
+</body>
+</html>

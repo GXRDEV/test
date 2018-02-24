@@ -1,0 +1,226 @@
+@import "./reset.scss";
+image{
+  margin: 0;
+  padding: 0;
+}
+body{
+  font-size: 16px;
+  overflow-y: scroll;
+}
+.main{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  .header{
+    height: .9rem;
+    line-height: .9rem;
+    background: #333237;
+    text-align: center;
+    color: #fff;
+    font-size: .34rem;
+    span{
+      position: absolute;
+      color: #fff;
+      top: .28rem;
+    }
+    span:nth-child(1){
+      left: .19rem;
+    }
+    span:nth-child(3){
+      right: .19rem;
+    }
+  }
+  .mains{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    .banner{
+      width: 100%;
+      img{
+        width: 100%;
+      }
+    }
+    .center{
+      width: 100%;
+      height: 2.09rem;
+      background: #f1f4f9;
+      border-bottom: 1px solid #dddddf;
+      dl{
+        width: 25%;
+        float: left;
+        text-align: center;
+        dt{
+          padding-top: .4rem;
+          width: .9rem;
+          margin: 0 auto;
+        }
+        dd{
+          font-size: .24rem;
+          padding-top: .1rem;
+        }
+      }
+    }
+    .section{
+
+      ul{
+        li{
+          height: .99rem;
+          border-bottom: 1px solid #efefef;
+          line-height: .99rem;
+          font-size: .28rem;
+          margin-left: .4rem;
+          input{
+            width: 5.55rem;
+            font-size: .28rem;
+          }
+          span{
+            color: #a9a9a9;
+          }
+          span:nth-child(3){
+            line-height: .99rem;
+            float: right;
+            padding-right: .38rem;
+          }
+          b{
+            padding-right: .39rem;
+          }
+        }
+        .section-li{
+          input{
+            width: 0;
+            height: 0;
+          }
+          .lab{
+            display: inline-block;
+            background: url("../images/btn_16.png") no-repeat center left;
+            background-size: .4rem .4rem;
+            padding-left: .56rem;
+            margin: 0 .3rem;
+          }
+          input[type="radio"]:checked+.lab{
+            background: url("../images/btn_18.png") no-repeat center left;
+            background-size: .4rem .4rem;
+          }
+        }
+        li:last-child{
+          height: .62rem;
+          line-height: .62rem;
+          border-bottom: none;
+          float: right;
+          padding-right: .38rem;
+        }
+      }
+    }
+  }
+  .footer{
+    clear: both;
+    height: .99rem;
+    line-height: .99rem;
+    p{
+      line-height: .99rem;
+      text-align: center;
+      float: left;
+      font-size: .33rem;
+      color: #fff;
+    }
+    p:nth-child(1){
+      width: 85%;
+      background: #ff6600;
+    }
+    p:nth-child(2){
+      width: 15%;
+      background: #4ecc2d;
+    }
+  }
+  .mark{
+    width: 100%;
+    height: 70%;
+    background: #ccc;
+    opacity: 0.5;
+    display: none;
+    position: absolute;
+    top: 0;
+  }
+  .school-box{
+    background: #fff;
+    width: 100%;
+    height: 40%;
+    display: none;
+    position: absolute;
+    bottom: 0;
+    .money-head{
+      position: relative;
+      height: .78rem;
+      width: 100%;
+      background: #383838;
+      font-size: .28rem;
+      span{
+        position: absolute;
+        color: #3a9efc;
+        top: .25rem;
+      }
+      span:nth-child(1){
+        right: .3rem;
+      }
+      span:nth-child(3){
+        left: .3rem;
+      }
+      p{
+        line-height: .78rem;
+        color: #fff;
+        text-align: center;
+      }
+    }
+    ul{
+      margin-top: .3rem;
+      height: 4.15rem;
+      li{
+        height: 25% ;
+        text-align: center;
+        line-height: .62rem;
+      }
+    }
+  }
+  .money-box{
+    background: #fff;
+    width: 100%;
+    height: 40%;
+    display: none;
+    position: absolute;
+    bottom: 0;
+    .money-head{
+      position: relative;
+      height: .78rem;
+      width: 100%;
+      background: #383838;
+      font-size: .28rem;
+      span{
+        position: absolute;
+        color: #3a9efc;
+        top: .25rem;
+      }
+      span:nth-child(1){
+        right: .3rem;
+      }
+      span:nth-child(3){
+        left: .3rem;
+      }
+      p{
+        line-height: .78rem;
+        color: #fff;
+        text-align: center;
+      }
+    }
+    ul{
+      margin-top: .3rem;
+      height: 4.15rem;
+      li{
+        height: 25% ;
+        text-align: center;
+        line-height: .62rem;
+      }
+    }
+  }
+}

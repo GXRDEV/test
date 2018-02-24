@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/js.js"></script>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    html,body{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .nav{
+        height: 44px;
+        width: 100%;
+        line-height: 44px;
+        background: lime;
+        border-bottom: 1px solid lime;
+    }
+    .nav li{
+        float: left;
+        width: 25%;
+        text-align: center;
+        list-style: none;
+    }
+    .lis{
+        color: aqua;
+        border-bottom: 1px solid red;
+    }
+    .wrapper{
+        width: 100%;
+        height: 200px;
+    }
+    .swipe-container{
+        height: 100%;
+    }
+    .swipe-item{
+        float: left;
+        height: 100%;
+        width: 100%;
+    }
+    .uls{
+        transition: transform 300ms ease-in-out;
+    }
+</style>
+<body>
+    <div class="nav">
+        <ul>
+            <li class="lis">首页</li>
+            <li>导航</li>
+            <li>详情</li>
+            <li>联系我们</li>
+        </ul>
+    </div>
+    <div class="wrapper">
+        <div class="swipe-container">
+            <div class="swipe-item" style="background: lightcoral"></div>
+            <div class="swipe-item" style="background: lightblue"></div>
+            <div class="swipe-item" style="background: lightslategrey"></div>
+            <div class="swipe-item" style="background: lightgreen"></div>
+        </div>
+    </div>
+    <script src="./js/js.js"></script>
+    <script>
+        var nav=document.querySelector(".nav");
+        var ul=nav.querySelector("ul");
+        var li=ul.querySelectorAll("li");
+        var swipers= new Swiper(".wrapper",{
+            callback:function(num){
+                console.log(num)
+                for(var i=0;i<li.length;i++){
+                    li[i].className="";
+                }
+                li[num].className="lis";
+            }
+        });
+       Array.prototype.slice.call(li).forEach(function(k,j){
+           k.onclick=function(){
+               for(var i=0;i<li.length;i++){
+                   li[i].className="";
+               }
+               swipers.moveTo(j);
+               k.className="lis"
+           }
+       })
+    </script>
+</body>
+</html>

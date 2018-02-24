@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<link rel="stylesheet" href="css/index.css">
+<body>
+	<div id="box">
+		<div id="top">
+			<div id="max">
+				<span class="mark"></span>
+			</div>
+			<div id="right"></div>
+		</div>
+		<div id="min">
+			<ul>
+				<li><img src="images/1.jpg" alt=""></li>
+				<li><img src="images/2.jpg" alt=""></li>
+				<li><img src="images/3.jpg" alt=""></li>
+				<li><img src="images/4.jpg" alt=""></li>
+				<li><img src="images/5.jpg" alt=""></li>
+			</ul>
+			<p class="left"><</p>
+			<p class="right">></p>
+		</div>
+	</div>
+	<script src="js/jquery1.7.js"></script>
+	<script>
+		var w=$("#min img").width()
+		var len=$("#min img").length
+		var ind1=1
+		var span=$("<span class='mark'></span>")
+		$("#min ul").width(w*len)
+		$("#min img").eq(0).clone().appendTo($("#max"))
+		$("#min img").eq(0).clone().appendTo($("#right"))
+
+		$("#min img").on("click",function(){
+			/*删除max和right中图片,并向里追加图片和mark*/
+			$("#max").children().remove()
+			$("#max").append(span)
+			$(this).clone().appendTo($("#max"))
+			$("#right").children().remove()
+			$(this).clone().appendTo($("#right"))
+		})
+		$(".right").on("click",function(){
+			move()	
+		})
+		$(".left").on("click",function(){
+			moves()
+		})
+		function move(){
+			if($("ul").is(":animated"))return false
+			$("ul").stop().animate({"marginLeft":-w*ind1},600,function(){
+				$("ul li").first().appendTo($("ul"))
+				$(this).css("marginLeft",0)
+			})
+			appe()
+		}
+		function moves(){
+			if($("ul").is(":animated"))return false
+			$("ul li").last().prependTo($("ul"))
+			$("ul").css("marginLeft",-w*ind1)
+			$("ul").stop().animate({"marginLeft":0},600)
+			appes()
+		}
+		/*删除max和right中图片,并向里追加图片和mark*/
+		function appe(){
+			$("#max").children().remove()
+			$("#max").append(span)
+			$("#min img").eq(1).clone().appendTo($("#max"))
+			$("#right").children().remove()
+			$("#min img").eq(1).clone().appendTo($("#right"))	
+		}
+		/*删除max和right中图片,并向里追加图片*/
+		function appes(){
+			$("#max").children().remove()
+			$("#max").append(span)
+			$("#min img").eq(0).clone().appendTo($("#max"))
+			$("#right").children().remove()
+			$("#min img").eq(0).clone().appendTo($("#right"))
+		}
+
+		$("#max").hover(function(){
+			$(".mark").css("display","block")
+		},function(){
+			$(".mark").css("display","none")
+		})
+		$("#max").on("mousemove",function(e){
+			/*mark的偏移量*/
+			var x=e.pageX-$(this).offset().left-$(".mark").width()/2
+			var y=e.pageY-$(this).offset().top-$(".mark").height()/2
+			e.preventDefault()
+			if(x<0){
+				x=0
+			}else if(x>$(this).width()-$(".mark").width()){
+				x=$(this).width()-$(".mark").width()
+			}
+			if(y<0){
+				y=0
+			}else if(y>$(this).height()-$(".mark").height()){
+				y=$(this).height()-$(".mark").height()
+			}
+			/*大图的偏移量*/
+			var bigx=$("#right img").width()/$(this).width()*x
+			var bigy=$("#right img").height()/$(this).height()*y
+			/*mark移动*/
+			$(".mark").css({"marginLeft":x,"marginTop":y})
+			/*大图偏移*/
+			$("#right img").css({"marginLeft":-bigx,"marginTop":-bigy})
+		})
+	</script>
+</body>
+</html>

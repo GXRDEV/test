@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<link rel="stylesheet" href="css/index.css">
+<body>
+	<div id="box">
+		<div id="images">
+			<a href="#"><img src="images/img1.jpg" alt=""></a>
+			<a href="#"><img src="images/img2.jpg" alt=""></a>
+			<a href="#"><img src="images/img3.jpg" alt=""></a>
+			<a href="#"><img src="images/img4.jpg" alt=""></a>
+		</div>
+		<p id="p">
+			<span class="span1">1</span>
+			<span>2</span>
+			<span>3</span>
+			<span>4</span>
+		</p>
+		<div id="btn">
+			<span class="left"><</span>
+			<span class="right">></span>
+		</div>
+	</div>
+	<script src="jq/jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			var time=null
+			var index1=0
+			var index2=1
+			//包图片a的长度
+			var len=$("a").length
+			var width1=$("img").width()
+			$("#images").width((len+1)*width1)
+			//var height1=$("img").height()
+			//$("#images").height(len*height1)
+
+			//下标对应图片
+			$("#p").on("mouseover","span",function(){
+				index1=$(this).index()
+				move1(index1)
+			})
+			//定时器
+			time=setInterval(move,1500)
+			//移入移出
+			$("#box").hover(function(){
+				clearInterval(time)
+			},function(){
+				time=setInterval(move,1500)
+			})
+
+			//移动函数
+			function move(){
+				if($("#images").is(":animated")) return false;
+				index1++
+				if(index1>=len){
+					index1=0
+					$("#images a").first().clone().appendTo("#images")
+					$("#images").stop().animate({"left":-width1*len},1000,function(){
+						$("#images a").last().remove()
+						$("#images").css("left",0)
+					})
+					$("#p span").eq(0).addClass("span1").siblings().removeClass("span1")
+				}else{
+					move1(index1)
+				}
+				
+			}
+
+			//改变图片和下标
+			function move1(ind){
+				$("#p span").eq(ind).addClass("span1").siblings().removeClass("span1")
+
+				$("#images").stop().animate({"left":-width1*ind},1000)
+				//$("#images").stop().animate({"marginTop":-height1*index1},1000)
+			}
+			//点击按钮
+			$(".right").on("click",function(){
+				move()
+			})
+			$(".left").on("click",function(){
+				if($("#images").is(":animated")) return false;
+				index1--
+				if(index1<0){
+					$("#images").css("left",-width1)
+					$("a").slice(-index2).clone().prependTo("#images")
+					$("#images").stop().animate({"left":0},600,function(){
+						$("#images").css("left",-(len-1)*width1)
+						$("a").first().remove()
+					})
+					index1=len-1;
+
+				}else{
+					$("#images").stop().animate({"left":-width1*index1},1000)
+				}
+				console.log(index1)
+				$("#p span").eq(index1).addClass("span1").siblings().removeClass("span1")
+
+				
+			})
+		})
+
+	</script>
+</body>
+</html>

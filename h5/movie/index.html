@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/font-awesome.css">
+</head>
+
+<body>
+<div class="content">
+    <div class="head-top">
+        <div class="header">
+            <p>
+                <span>影城</span>
+                <span class="fa fa-chevron-down"></span>
+            </p>
+            <h1>国际影城</h1>
+            <p class="fa fa-exclamation-circle"></p>
+        </div>
+        <div class="headers">
+            影院重装开业，会员卡购票可享5折优惠
+        </div>
+    </div>
+    <div class="section">
+        <div class="main">
+                <div class="swiper-container nav">
+                    <ul class="swiper-wrapper"></ul>
+                </div>
+                <div class="show">
+                    <p class="show-p1"></p>
+                    <p class="show-p2"></p>
+                </div>
+                <div class="line">
+                    <span class="fa fa-chevron-right"></span>中午12:00前，会员统一价25元，限购两张
+                </div>
+                <div class="time"></div>
+                <div class="main-txt">
+                    <span class="fa fa-exclamation-circle"></span>
+                    温馨提示，电影开场前30分钟关闭在线售票
+                </div>
+                <div class="main-show">
+                    <ul></ul>
+                </div>
+            </div>
+    </div>
+
+</div>
+
+    <script src="./js/zepto.min.js"></script>
+    <script src="./js/swiper.js"></script>
+    <script src="./js/iscroll.js"></script>
+    <script>
+       // var myIscroll=new IScroll(".section");
+            var swipeul=document.querySelector(".swipe-ul");
+            document.documentElement.style.fontSize=document.documentElement.clientWidth/6.4+"px";
+            var startX,moveX,endX=0,spanX=0,startY,endY,spanY=0,picture="";
+            var listr="";
+            var w=0;
+
+            $.ajax({
+                type:"POST",
+                url:"./data.json",
+                dataType:"json",
+                success:function(datas){
+                    var datat=datas.data.movie_data;
+                    var timestr="";
+                    var lens;
+                    var len;
+                    //  渲染图片
+                    for(var i in datat){
+                        picture+="<li class='swiper-slide'><img src='"+datat[i].movie_img_url+"'></li>"
+                    }
+                    $(".swiper-wrapper").html(picture);
+
+                    /*  swiper  */
+
+                    var swipe=new Swiper(".nav",{
+                        // 自由模式
+                        freeMode:true,
+                        // 默认设置页面显示数量
+                        slidesPerView:"auto",
+                        // spaceBetween:10/*  设置间距  */
+                        onTap:function(e){
+                            // $(".swiper-slide").eq(e.clickedIndex).find("img").addClass("active").parent().siblings().children().removeClass();
+                            $(".swiper-slide").eq(e.clickedIndex).addClass("active").siblings().removeClass("active");
+
+                            //  console.log(e.clickedIndex);
+                            //  swipe.slideTo(e.clickedIndex,300);
+                        }
+                    });
+                    $(".swiper-slide").eq(0).addClass("active")
+                    //  默认显示播放时间
+                    time=(datas.data.movie_data[0].shows["2016-10-25"][0].end_time.slice(0,2)-datas.data.movie_data[0].shows["2016-10-25"][0].start_time.slice(0,2))*60+(datas.data.movie_data[0].shows["2016-10-25"][0].end_time.slice(3)-datas.data.movie_data[0].shows["2016-10-25"][0].start_time.slice(3));
+                    show_span1="<b>"+datas.data.movie_data[0].movie_name+"</b><span>片长："+time+"分钟</span><span>7.8分</span>";
+                    show_span2="<span>"+datas.data.movie_data[0].movie_desc+"</span>";
+                    $(".show-p1").html(show_span1);
+                    $(".show-p2").html(show_span2);
+                    //  时间
+                    lens=datas.data.movie_data[0].days.length;
+                    //  console.log(datas.data.movie_data[0].days[0].show_date.slice(5,7));
+                    //  console.log(datas.data.movie_data[0].days[0].show_date.slice(8));
+                    var arr=["今天","明天","后天","",""];
+                    for(var i=0;i<lens;i++){
+                        month=datas.data.movie_data[0].days[i].show_date.slice(5,7);
+                        day=datas.data.movie_data[0].days[i].show_date.slice(8);
+                        timestr+="<span>"+arr[i]+month+"月"+day+"日</span>";
+                    }
+                    $(".time").html(timestr);
+                    $(".time span").width(100/lens+"%");
+                    $(".time span").first().addClass("timespans");
+                    $(".time span").on("tap",function () {
+                        $(this).addClass("timespans").siblings().removeClass()
+                    });
+                    //  详细信息
+                    var limain;
+                    len=datas.data.movie_data[0].shows["2016-10-25"].length;
+                    limain=datas.data.movie_data[0].shows["2016-10-25"];
+                    //  console.log(limain);
+                    infortion(len)
+                    //  日期点击
+                    $(".time span").on("tap",function () {
+                        listr="";
+                        dayss=datas.data.movie_data[0].days;
+                        $(this).addClass("timespans").siblings().removeClass();
+                        var indexa=$(this).index();
+                        console.log(indexa);
+                        //  详细信息展示
+                        len=datas.data.movie_data[0].shows[dayss[indexa].show_date].length;
+                        //  console.log(len);
+                        limain=datas.data.movie_data[0].shows[dayss[indexa].show_date];
+                        infortion(len)
+                    })
+                    //  轮播提点击
+                    $(".swiper-wrapper li").on("click",function () {
+                        timestr="";
+                        var ind=$(this).index();
+                        lens=datas.data.movie_data[ind].days.length;
+                        dayss=datas.data.movie_data[ind].days;
+                        time=(datas.data.movie_data[ind].shows["2016-10-25"][0].end_time.slice(0,2)-datas.data.movie_data[ind].shows["2016-10-25"][0].start_time.slice(0,2))*60+(datas.data.movie_data[ind].shows["2016-10-25"][0].end_time.slice(3)-datas.data.movie_data[ind].shows["2016-10-25"][0].start_time.slice(3));
+                        show_span1="<b>"+datas.data.movie_data[ind].movie_name+"</b><span>片长："+time+"分钟</span><span>7.8分</span>";
+                        show_span2="<span>"+datas.data.movie_data[ind].movie_desc+"</span>"
+                        $(".show-p1").html(show_span1);
+                        $(".show-p2").html(show_span2);
+                        //   日期显示
+                        for(var i=0;i<lens;i++){
+                            month=datas.data.movie_data[ind].days[i].show_date.slice(5,7);
+                            day=datas.data.movie_data[ind].days[i].show_date.slice(8);
+                            timestr+="<span>"+arr[i]+month+"月"+day+"日</span>";
+                        }
+                        $(".time").html(timestr);
+                        //   详细信息展示
+                        listr="";
+                        len=datas.data.movie_data[ind].shows[dayss[0].show_date].length;
+                        limain=datas.data.movie_data[ind].shows[dayss[0].show_date];
+                        infortion(len)
+                        //  日期点击
+                        $(".time span").on("tap",function () {
+                            listr="";
+                            $(this).addClass("timespans").siblings().removeClass();
+                            var indexa=$(this).index();
+                            console.log(indexa);
+                            //  详细信息展示
+                            len=datas.data.movie_data[ind].shows[dayss[indexa].show_date].length;
+                            //  console.log(len);
+                            limain=datas.data.movie_data[ind].shows[dayss[indexa].show_date];
+                            infortion(len)
+                        })
+                        $(".time span").width(100/lens+"%");
+                        $(".time span").first().addClass("timespans");
+
+
+                    });
+                    function infortion(len){
+                        for(var j=0;j<len;j++){
+                            listr+="<li>" +
+                                    "<p>" +
+                                    "<b>"+limain[j].start_time+"</b>" +
+                                    "<i>"+limain[j].end_time+"退场</i>" +
+                                    "</p>" +
+                                    "<p>" +
+                                    "<b>"+limain[j].language+"</b>" +
+                                    "<i>"+limain[j].hall_name+"</i>" +
+                                    "</p>" +
+                                    "<p>" +
+                                    "<b>￥"+limain[j].nonmember_price+"</b>" +
+                                    "<b><span>会员</span><span>￥"+limain[j].member_price+"</span></b>" +
+                                    "<i>影院价￥"+limain[j].price+"</i>" +
+                                    "</p>" +
+                                    "<p>" +
+                                    "<b>场次过期</b>" +
+                                    "</p>" +
+                                    "</li>"
+                        }
+                        $(".main-show ul").html(listr);
+                    }
+
+                }
+
+            });
+           //myIscroll.refresh();
+
+
+    </script>
+</body>
+</html>

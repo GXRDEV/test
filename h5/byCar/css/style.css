@@ -1,0 +1,267 @@
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-backface-visibility: hidden; }
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+  margin: 0;
+  padding: 0; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+  table th, table td {
+    vertical-align: top; }
+
+fieldset, img {
+  border: 0; }
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%; }
+
+em, strong, b, i {
+  font-style: normal;
+  font-weight: normal; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  font-size: 100%; }
+
+body, input, button, textarea {
+  font-family: sans-serif,Helvetica; }
+
+input {
+  border: none; }
+
+a {
+  text-decoration: none;
+  outline: none; }
+
+a:hover {
+  cursor: pointer; }
+
+html, body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  height: 100%;
+  width: 100%;
+  color: #333;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased; }
+
+body {
+  position: relative;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden; }
+
+ul, ol {
+  list-style-type: none; }
+  ul li, ol li {
+    list-style: none; }
+
+a, input, textarea, select {
+  outline: 0;
+  -webkit-appearance: none;
+  font-size: 100%;
+  border: 1px solid #fefefe; }
+
+a {
+  color: #333;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent; }
+  a:active {
+    color: #1a1a1a; }
+
+::-webkit-input-placeholder {
+  color: #cacaca; }
+
+input:-moz-placeholder {
+  color: #cacaca; }
+
+image {
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-size: 16px;
+  overflow-y: scroll; }
+
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; }
+  .main .header {
+    height: .9rem;
+    line-height: .9rem;
+    background: #333237;
+    text-align: center;
+    color: #fff;
+    font-size: .34rem; }
+    .main .header span {
+      position: absolute;
+      color: #fff;
+      top: .28rem; }
+    .main .header span:nth-child(1) {
+      left: .19rem; }
+    .main .header span:nth-child(3) {
+      right: .19rem; }
+  .main .mains {
+    width: 100%;
+    height: 100%;
+    overflow: auto; }
+    .main .mains .banner {
+      width: 100%; }
+      .main .mains .banner img {
+        width: 100%; }
+    .main .mains .center {
+      width: 100%;
+      height: 2.09rem;
+      background: #f1f4f9;
+      border-bottom: 1px solid #dddddf; }
+      .main .mains .center dl {
+        width: 25%;
+        float: left;
+        text-align: center; }
+        .main .mains .center dl dt {
+          padding-top: .4rem;
+          width: .9rem;
+          margin: 0 auto; }
+        .main .mains .center dl dd {
+          font-size: .24rem;
+          padding-top: .1rem; }
+    .main .mains .section ul li {
+      height: .99rem;
+      border-bottom: 1px solid #efefef;
+      line-height: .99rem;
+      font-size: .28rem;
+      margin-left: .4rem; }
+      .main .mains .section ul li input {
+        width: 5.55rem;
+        font-size: .28rem; }
+      .main .mains .section ul li span {
+        color: #a9a9a9; }
+      .main .mains .section ul li span:nth-child(3) {
+        line-height: .99rem;
+        float: right;
+        padding-right: .38rem; }
+      .main .mains .section ul li b {
+        padding-right: .39rem; }
+    .main .mains .section ul .section-li input {
+      width: 0;
+      height: 0; }
+    .main .mains .section ul .section-li .lab {
+      display: inline-block;
+      background: url("../images/btn_16.png") no-repeat center left;
+      background-size: .4rem .4rem;
+      padding-left: .56rem;
+      margin: 0 .3rem; }
+    .main .mains .section ul .section-li input[type="radio"]:checked + .lab {
+      background: url("../images/btn_18.png") no-repeat center left;
+      background-size: .4rem .4rem; }
+    .main .mains .section ul li:last-child {
+      height: .62rem;
+      line-height: .62rem;
+      border-bottom: none;
+      float: right;
+      padding-right: .38rem; }
+  .main .footer {
+    clear: both;
+    height: .99rem;
+    line-height: .99rem; }
+    .main .footer p {
+      line-height: .99rem;
+      text-align: center;
+      float: left;
+      font-size: .33rem;
+      color: #fff; }
+    .main .footer p:nth-child(1) {
+      width: 85%;
+      background: #ff6600; }
+    .main .footer p:nth-child(2) {
+      width: 15%;
+      background: #4ecc2d; }
+  .main .mark {
+    width: 100%;
+    height: 70%;
+    background: #ccc;
+    opacity: 0.5;
+    display: none;
+    position: absolute;
+    top: 0; }
+  .main .school-box {
+    background: #fff;
+    width: 100%;
+    height: 40%;
+    display: none;
+    position: absolute;
+    bottom: 0; }
+    .main .school-box .money-head {
+      position: relative;
+      height: .78rem;
+      width: 100%;
+      background: #383838;
+      font-size: .28rem; }
+      .main .school-box .money-head span {
+        position: absolute;
+        color: #3a9efc;
+        top: .25rem; }
+      .main .school-box .money-head span:nth-child(1) {
+        right: .3rem; }
+      .main .school-box .money-head span:nth-child(3) {
+        left: .3rem; }
+      .main .school-box .money-head p {
+        line-height: .78rem;
+        color: #fff;
+        text-align: center; }
+    .main .school-box ul {
+      margin-top: .3rem;
+      height: 4.15rem; }
+      .main .school-box ul li {
+        height: 25%;
+        text-align: center;
+        line-height: .62rem; }
+  .main .money-box {
+    background: #fff;
+    width: 100%;
+    height: 40%;
+    display: none;
+    position: absolute;
+    bottom: 0; }
+    .main .money-box .money-head {
+      position: relative;
+      height: .78rem;
+      width: 100%;
+      background: #383838;
+      font-size: .28rem; }
+      .main .money-box .money-head span {
+        position: absolute;
+        color: #3a9efc;
+        top: .25rem; }
+      .main .money-box .money-head span:nth-child(1) {
+        right: .3rem; }
+      .main .money-box .money-head span:nth-child(3) {
+        left: .3rem; }
+      .main .money-box .money-head p {
+        line-height: .78rem;
+        color: #fff;
+        text-align: center; }
+    .main .money-box ul {
+      margin-top: .3rem;
+      height: 4.15rem; }
+      .main .money-box ul li {
+        height: 25%;
+        text-align: center;
+        line-height: .62rem; }
+
+/*# sourceMappingURL=style.css.map */

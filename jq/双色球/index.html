@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<link rel="stylesheet" href="css/index.css">
+<body>
+	<div>
+		<h1 class="red">红色球</h1>
+		<div id="redBox">
+			
+		</div>
+		<h1 class="blue">蓝色球</h1>
+		<div id="blueBox">
+			
+		</div>
+		<button id="clear">清除</button>
+		<button id="star">开始</button>
+		<button id="end">结束</button>
+	</div>
+	<script src="js/jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			var arr1=[],arr2=[],str1="",str2="";
+			var time=null
+
+			/*取出数值放进两个数组里面*/
+			for(var i=1;i<=33;i++){
+				if(i<=16){
+					arr2.push(i)
+				}
+				arr1.push(i)
+			}
+			/*遍历第一个数组*/
+			$.each(arr1,function(i,vall){
+				/*当得出结果小于10的时候，在前面加一个0*/
+				var valla=vall<10?"0"+vall:vall
+				/*将取出来的数放在一个标签里*/
+				str1+="<span>"+valla+"</span>"
+				$("#redBox").html(str1)
+			})
+			$.each(arr2,function(i,vall){
+				var valla=vall<10?"0"+vall:vall
+				str2+="<span>"+valla+"</span>"
+				$("#blueBox").html(str2)
+			})
+			/*以上是排版工作*/
+
+			function random1(){
+				arr3=[],arr4=[]
+				$("#redBox span").removeClass("redbox")
+				/*注意循环条件*/
+				for(var i=0;arr3.length<6;i++){
+					var num=Math.ceil(Math.random()*33)
+					if(arr3.indexOf(num)==-1){
+						arr3.push(num)
+						$("#redBox span").eq(num-1).addClass("redbox")
+					}
+				}
+				var num1=Math.ceil(Math.random()*16)
+				if(arr4.indexOf(num1)==-1){
+					arr4.push(num1)
+					$("#blueBox span").eq(num1-1).addClass("bluebox").siblings().removeClass("bluebox")
+
+				}
+				console.log(arr3)
+				console.log(arr4)
+			}
+
+			
+			/*三个按钮的点击事件*/
+			$("#star").on("click",function(){
+				time=setInterval(random1,100)
+				$(this).prop("disabled",true)
+			})
+			$("#end").on("click",function(){
+				clearInterval(time)
+				$("#star").prop("disabled",false)
+			})
+			$("#clear").on("click",function(){
+				clearInterval(time)
+				$("#redBox span").removeClass("redbox")
+				$("#blueBox span").removeClass("bluebox")
+				$("#star").prop("disabled",false)
+			})
+		})
+	</script>
+</body>
+</html>

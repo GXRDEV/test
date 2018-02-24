@@ -1,0 +1,301 @@
+@import url(./font-awesome.css);
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-backface-visibility: hidden; }
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+  margin: 0;
+  padding: 0; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+  table th, table td {
+    vertical-align: top; }
+
+fieldset, img {
+  border: 0; }
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%; }
+
+em, strong, b, i {
+  font-style: normal;
+  font-weight: normal; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  font-size: 100%; }
+
+body, input, button, textarea {
+  font-family: sans-serif,Helvetica; }
+
+input {
+  border: none; }
+
+a {
+  text-decoration: none;
+  outline: none; }
+
+a:hover {
+  cursor: pointer; }
+
+html, body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  height: 100%;
+  width: 100%;
+  color: #333;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased; }
+
+body {
+  position: relative;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden; }
+
+ul, ol {
+  list-style-type: none; }
+  ul li, ol li {
+    list-style: none; }
+
+a, input, textarea, select {
+  outline: 0;
+  -webkit-appearance: none;
+  font-size: 100%;
+  border: 1px solid #fefefe; }
+
+a {
+  color: #333;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent; }
+  a:active {
+    color: #1a1a1a; }
+
+::-webkit-input-placeholder {
+  color: #cacaca; }
+
+input:-moz-placeholder {
+  color: #cacaca; }
+
+body {
+  font-size: 16px; }
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; }
+  .content .header {
+    height: .96rem;
+    background: #1b1b20;
+    color: #fff;
+    position: relative;
+    line-height: .96rem; }
+    .content .header h1 {
+      font-size: .36rem;
+      text-align: center; }
+    .content .header p {
+      position: absolute; }
+    .content .header p:first-child {
+      padding-left: .56rem;
+      font-size: .3rem; }
+      .content .header p:first-child:after {
+        content: "";
+        position: absolute;
+        border: .17rem solid transparent;
+        left: .1rem;
+        border-right-color: #fff;
+        top: .3rem; }
+      .content .header p:first-child:before {
+        content: "";
+        position: absolute;
+        border: .17rem solid transparent;
+        left: .14rem;
+        border-right-color: #1b1b20;
+        z-index: 1;
+        top: .3rem; }
+    .content .header p:last-child {
+      top: .3rem;
+      right: .3rem; }
+  .content .section {
+    flex: 1;
+    display: flex;
+    flex-direction: column; }
+    .content .section .dls {
+      height: 2rem;
+      padding: .4rem 0;
+      padding-left: .4rem; }
+      .content .section .dls dt {
+        float: left;
+        width: 1.72rem;
+        height: 1.18rem; }
+      .content .section .dls dd {
+        float: left;
+        padding-left: .22rem; }
+        .content .section .dls dd p {
+          line-height: .44rem; }
+        .content .section .dls dd p:first-child {
+          font-size: .26rem; }
+        .content .section .dls dd p:nth-child(2) {
+          font-size: .22rem;
+          color: #c1c1c1; }
+          .content .section .dls dd p:nth-child(2) span:last-child {
+            padding-left: .18rem; }
+        .content .section .dls dd p:last-child {
+          font-size: .22rem;
+          color: #c1c1c1; }
+          .content .section .dls dd p:last-child span {
+            padding: 0 .1rem;
+            border-left: 1px solid #ccc; }
+          .content .section .dls dd p:last-child span:first-child {
+            padding-left: 0;
+            border: none; }
+    .content .section .main {
+      flex: 1;
+      display: flex;
+      border-top: 1px solid #ebebeb; }
+      .content .section .main .left {
+        width: 22%;
+        height: 100%;
+        border-right: 1px solid #ebebeb; }
+        .content .section .main .left ul li {
+          line-height: 1rem;
+          font-size: .27rem;
+          text-align: center; }
+        .content .section .main .left ul .color-a {
+          border-bottom: 1px solid #8476d7;
+          color: #8476d7;
+          padding-bottom: .08rem; }
+      .content .section .main .right {
+        flex: 1; }
+        .content .section .main .right h3 {
+          display: block;
+          background: #f7f7f7;
+          font-size: .22rem;
+          padding-left: .28rem;
+          line-height: .6rem;
+          color: #666666;
+          border-bottom: 1px solid #ebebeb; }
+        .content .section .main .right div {
+          display: none; }
+        .content .section .main .right .dv-shows {
+          display: block; }
+        .content .section .main .right dl {
+          clear: both;
+          padding: .27rem;
+          padding-right: 0; }
+          .content .section .main .right dl dt {
+            float: left;
+            width: 1.2rem; }
+          .content .section .main .right dl dd {
+            padding-left: .32rem;
+            width: 75%;
+            float: left; }
+            .content .section .main .right dl dd p {
+              line-height: .45rem; }
+            .content .section .main .right dl dd p:first-child {
+              font-size: .26rem; }
+            .content .section .main .right dl dd p:nth-child(2) {
+              font-size: .2rem; }
+              .content .section .main .right dl dd p:nth-child(2) span:first-child {
+                border-right: 1px solid #ccc;
+                padding-right: .14rem; }
+              .content .section .main .right dl dd p:nth-child(2) span:last-child {
+                padding-left: .14rem; }
+            .content .section .main .right dl dd p:last-child {
+              color: #fbd9b2;
+              font-size: .24rem; }
+              .content .section .main .right dl dd p:last-child span:first-child {
+                font-weight: bold; }
+              .content .section .main .right dl dd p:last-child span:last-child {
+                float: right; }
+                .content .section .main .right dl dd p:last-child span:last-child em {
+                  display: inline-block;
+                  width: .42rem;
+                  height: .42rem;
+                  background: #8476d7;
+                  color: #fff;
+                  text-align: center;
+                  line-height: .42rem;
+                  border-radius: 100%;
+                  margin: 0 .1rem; }
+                .content .section .main .right dl dd p:last-child span:last-child i {
+                  color: #000; }
+  .content .footer {
+    height: 1.26rem;
+    background: #1b1b20;
+    line-height: 1.26rem;
+    font-size: .3rem;
+    color: #fff;
+    padding-left: .4rem;
+    font-family: "Microsoft YaHei UI"; }
+    .content .footer .footer-span {
+      margin-top: .32rem;
+      line-height: .54rem;
+      text-align: center;
+      float: left;
+      width: .54rem;
+      height: .54rem;
+      background: #8476d7;
+      border-radius: 100%;
+      margin-right: .1rem; }
+    .content .footer em {
+      float: right;
+      margin-right: .28rem;
+      width: 2.2rem;
+      height: .76rem;
+      background: #8476d7;
+      text-align: center;
+      line-height: .76rem;
+      border-radius: .1rem;
+      margin-top: .2rem; }
+  .content .marks {
+    display: none;
+    position: absolute;
+    bottom: 1.26rem;
+    opacity: .5;
+    width: 100%;
+    height: 100px;
+    background: #000; }
+  .content .marka {
+    position: absolute;
+    overflow: hidden;
+    height: 100px;
+    bottom: 1.26rem;
+    line-height: .5rem;
+    font-size: .25rem;
+    padding-left: .2rem;
+    color: #fff; }
+    .content .marka .mark {
+      width: 100%; }
+      .content .marka .mark span {
+        padding-left: .4rem;
+        color: #f7a92d; }
+      .content .marka .mark span:last-child {
+        float: right; }
+        .content .marka .mark span:last-child em {
+          display: inline-block;
+          width: .42rem;
+          height: .42rem;
+          background: #8476d7;
+          color: #fff;
+          text-align: center;
+          line-height: .42rem;
+          border-radius: 100%;
+          margin: 0 .1rem; }
+        .content .marka .mark span:last-child i {
+          color: #fff; }
+
+/*# sourceMappingURL=app.css.map */

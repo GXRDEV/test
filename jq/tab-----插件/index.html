@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<link rel="stylesheet" href="css/index.css">
+<body>
+	<div id="box">
+		<div id="top">
+			<ul>
+				<li>one</li>
+				<li>two</li>
+				<li>three</li>
+				<li>four</li>
+				<li>five</li>
+			</ul>
+			<p id="prev">prev</p>
+			<p id="next">next</p>
+		</div>
+		<div id="bottom">
+			<div>one显示内容</div>
+			<div>two显示内容</div>
+			<div>three显示内容</div>
+			<div>four显示内容</div>
+			<div>five显示内容</div>
+		</div>
+	</div>
+	<script src="js/jquery1.7.js"></script>
+	<script src="js/index.js"></script>
+	<script>
+		$("#top li").move({
+			speed:1000,
+			high:"",
+			effect:"slice",
+			anima:"left",
+			settime:1500,
+			play:true,
+			prev:"#prev",
+			next:"#next",
+			names:"#bottom",
+			high:"aa"
+		})
+	</script>
+</body>
+</html>

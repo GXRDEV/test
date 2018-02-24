@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="content">
+        <div class="header">
+            <span>< 返回</span>
+            <p>你猜我是谁</p>
+            <span class="fa fa-phone"></span>
+            <span class="fa fa-user"></span>
+        </div>
+        <div class="section">
+            <div class="main">
+                <div class="speak">
+                    <span>me</span><em></em><p>你好啊</p>
+                </div>
+                <div class="speak">
+                    <span>me</span><em></em><p>你好</p>
+                </div>
+                <div class="speak">
+                    <span>me</span><em></em><p>你好啊</p>
+                </div>
+                <div class="speak">
+                    <span>me</span><em></em><p>怎么不说话</p>
+                </div>
+                <div class="speak">
+                    <span>me</span><em></em><p>你好啊</p>
+                </div>
+                <div class="speak">
+                    <span>me</span><em></em><p>你好啊</p>
+                </div>
+                <div class="speak">
+                    <span>me</span><em></em><p>快点的</p>
+                </div>
+                <div class="speak">
+                    <span>me</span><em></em><p>你好啊</p>
+                </div>
+                <div class="speak">
+                    <span>me</span><em></em><p>说话啊</p>
+                </div>
+                <div class="speak">
+                    <span>me</span><em></em><p>你好啊</p>
+                </div>
+                <div class="speak">
+                    <span>me</span><em></em><p>你好啊</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <span><input type="text" class="txt"></span>
+            <span class="btn">发送</span>
+        </div>
+    </div>
+    <script src="./js/zepto.min.js"></script>
+    <script src="./js/iscroll.js"></script>
+    <script>
+       var sen=new IScroll(".section",{
+
+        });
+       //  文本框发生改变时触发
+        $(".txt").on("input propertychange",function () {
+            if($(".txt").val()){
+                $(".btn").addClass("span-color")
+                console.log($(".txt").val())
+            }else{
+                $(".btn").removeClass("span-color")
+            }
+        })
+        $(".btn").on("tap",function () {
+            if($(".txt").val()){
+                $("<div class='speak'><span>me</span><em></em><p>"+$(".txt").val()+"</p></div>").appendTo(".main")
+                $(".txt").val("");
+                $(this).removeClass("span-color")
+            }else{
+                alert("不能发送空消息")
+            }
+            sen.refresh();
+            sen.scrollToElement($(".main>div:last")[0])
+        })
+    </script>
+</body>
+</html>

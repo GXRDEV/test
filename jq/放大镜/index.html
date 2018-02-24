@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{margin: 0;padding: 0}
+	#box{height:700px;width: 700px;margin: 0 auto}
+	#min{height: 225px;width: 300px;float: left;}
+	#max{height: 300px;width: 300px;float: right;overflow: hidden;display: none;}
+	.span1{height: 100px;width: 100px;background: #ccc;opacity: 0.8;position: absolute;top: 0;display: none;}
+</style>
+<body>
+	<div id="box">
+		<div id="min">
+			<img src="images/smallpic.jpg" alt="">
+			<span class="span1"></span>
+		</div>
+		<div id="max">
+			<img src="images/bigpic.jpg" alt="" class="img">
+		</div>
+	</div>
+	<script src="js/jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			$("#min").hover(function(){
+				$(".span1").css("display","block")
+				$("#max").css("display","block")
+			},function(){
+			})
+			$("#min").on("mousemove",function(e){
+				/*使光标居于虚影层的中间*/
+				var x=e.pageX-$(this).offset().left-$(".span1").width()/2
+				var y=e.pageY-$(this).offset().top-$(".span1").height()/2
+				/*盒子减去虚影层的宽度*/
+				var width1=$(this).width()-$(".span1").width()
+				var height1=$(this).height()-$(".span1").height()
+				if(x<0){
+					x=0
+				}else if(x>width1){
+					x=width1
+				}
+				if(y<0){
+					y=0
+				}else if(y>height1){
+					y=height1
+				}
+				/*大图的宽度减去小盒子的宽度再乘以虚影层移动的距离*/
+				var bigx=$(".img").width()/$(this).width()*x
+				var bigy=$(".img").height()/$(this).height()*y
+				/*虚影层移动的距离以及大图移动的距离*/
+				$(".span1").css({"margin-left":x,"margin-top":y})
+				$(".img").css({"margin-left":-bigx,"margin-top":-bigy})
+			})
+		})
+	</script>
+</body>
+</html>

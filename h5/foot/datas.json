@@ -1,0 +1,46 @@
+{
+  "status": 1,
+  "errcode": "0",
+  "msg": "",
+  "data": {
+    "shop": [
+      {
+        "name": "嘉和一品(中关村店)",
+        "names":"嘉和一品中关村店",
+        "market": "12",
+        "price": "25",
+        "sprice":"6",
+        "time":"43",
+        "distance":"10",
+        "movie_img_url": "images/shop_03.jpg"
+      },{
+        "name": "肯德基(中关村店)",
+        "names": "肯德基中关村店",
+        "market": "12",
+        "price": "45",
+        "sprice":"6",
+        "time":"43",
+        "distance":"10",
+        "movie_img_url": "./images/shop_06.jpg"
+      },{
+        "name": "必胜客(中关海龙店)",
+        "names": "必胜客中关海龙店",
+        "market": "12",
+        "price": "35",
+        "sprice":"6",
+        "time":"43",
+        "distance":"10",
+        "movie_img_url": "./images/shop_08.jpg"
+      },{
+        "name": "星巴克(海龙店)",
+        "names": "星巴克海龙店",
+        "market": "12",
+        "price": "30",
+        "sprice":"6",
+        "time":"43",
+        "distance":"10",
+        "movie_img_url": "./images/shop_10.jpg"
+      }
+    ]
+  }
+}

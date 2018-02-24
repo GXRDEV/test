@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding:0 }
+		#box{width: 1500px;margin: 0 auto;position: relative;}
+		.p1{height: 700px;background: red;font-size: 50px;text-align: center;}
+		.p2{height: 600px;background: green;font-size: 50px;text-align: center;}
+		.p3{height: 800px;background: blue;font-size: 50px;text-align: center;}
+		.p4{height: 600px;background: yellow;font-size: 50px;text-align: center;}
+		.p5{height: 700px;background: orange;font-size: 50px;text-align: center;}
+		.p6{height: 800px;background: pink;font-size: 50px;text-align: center;}
+		#uls{position: fixed;bottom: 500px;display: none;width:200px;right: 0;}
+		ul li{width:200px;background: #ccc;list-style: none;margin-left: 100px;cursor: pointer;margin-bottom:1px;height: 50px;line-height: 50px}
+		#btn{width: 100px;background: #ccc;margin-left: 100px;cursor: pointer;}
+	</style>	
+</head>
+<body>
+	<div id="box">
+		<div id="box1">
+			<p class="p1">F1</p>
+			<p class="p2">F2</p>
+			<p class="p3">F3</p>
+			<p class="p4">F4</p>
+			<p class="p5">F5</p>
+			<p class="p6">F6</p>
+		</div>
+		<div id="uls">
+			<ul>
+				<li>F1</li>
+				<li>F2</li>
+				<li>F3</li>
+				<li>F4</li>
+				<li>F5</li>
+				<li>F6</li>
+			</ul>
+			<div id="btn">top</div>
+		</div>
+	</div>
+	<script src="js/jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			var arr=[]
+			$(window).on("scroll",function(){
+				/*首先获取所有的p元素*/
+				var divs=$("#box1").children("p")
+				/*获取移动距离*/
+				var heig=$(this).scrollTop()
+				/*让uls显示或者隐藏*/
+				if(heig>1){
+					$("#uls").show()
+				}else{
+					$("#uls").hide()
+				}
+				/*遍历所有的p元素,将其距离顶部距离push给一个数组*/
+				$.each(divs,function(){
+					var top1=$(this).offset().top
+					arr.push(top1)
+				})
+				
+				$.each(arr,function(i,vall){
+					if(heig>=vall-300){
+						$("#uls li").eq(i).stop().animate({"margin-left":0},500).siblings().stop().animate({"margin-left":100},500)
+					}
+					
+				})
+			})
+			$("#btn").on("click",function(){
+				$("body").scrollTop(0)
+			})
+			/*li点击时，body移动，scrollTop，距离顶部的距离*/
+			$("li").on("click",function(){
+				var index1=$(this).index()
+				/*alert(index1)*/
+				$("body").stop().animate({"scrollTop":arr[index1]},1000)
+			})
+		})
+	</script>
+</body>
+</html>

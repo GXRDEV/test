@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<link rel="stylesheet" href="css/index.css">
+<body>
+	<div id="box">
+		<div id="images">
+			<a href="#"><img src="images/img1.jpg" alt=""></a>
+			<a href="#"><img src="images/img2.jpg" alt=""></a>
+			<a href="#"><img src="images/img3.jpg" alt=""></a>
+			<a href="#"><img src="images/img4.jpg" alt=""></a>
+		</div>
+		<p id="p">
+			<span class="span1">1</span>
+			<span>2</span>
+			<span>3</span>
+			<span>4</span>
+		</p>
+	</div>
+	<script src="jq/jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			var time1=null
+			var index1=0
+			$("#p").on("mouseover","span",function(){
+				index1=$(this).index()-1
+				time()
+			})
+			time1=setInterval(time,2000)
+
+			function time(){
+				index1++
+				if(index1>$("a").length){
+					index1=0
+				}
+				$("span").eq(index1).addClass("span1").siblings().removeClass("span1")
+				/*$("a").eq(index1).fadeIn(1000).siblings().fadeOut(1000)*/
+				$("a").eq(index1).show(1000).siblings().hide(1000)
+
+			}
+			$("#box").hover(function(){
+				clearInterval(time1)
+			},function(){
+				time1=setInterval(time,2000)
+			})
+		})
+	</script>
+</body>
+</html>

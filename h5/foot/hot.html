@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="./css/hot.css">
+<link rel="stylesheet" href="./css/swiper.css">
+<body>
+<div class="content">
+    <div class="header">
+        <div class="head">
+            <span class="head-span">返回</span>
+            <p>热卖推荐</p>
+            <span class="fa fa-ellipsis-h"></span>
+        </div>
+    </div>
+    <div class="section">
+        <div class="nav"></div>
+        <div class="tab">
+            <ul class="tab-ul"></ul>
+        </div>
+        <div class="main">
+            <div class="mains">
+                <div class="left"></div>
+                <div class="right"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+    <script src="./js/zepto.min.js"></script>
+    <script src="./js/iscroll.js"></script>
+    <script src="./js/swiper.js"></script>
+    <script>
+        document.documentElement.style.fontSize=document.documentElement.clientWidth/7.5+"px";
+
+        ;(function () {
+            $(".head-span").on("tap",function () {
+                window.location="./shop.html";
+            })
+           var scroll=new IScroll(".main")
+           $.ajax({
+               url:"data.json",
+               success:function (data) {
+                   var nav,navstr="",navind,tabstr="",tab,tabw,showstr="",tabind,rightdl="";
+                   nav=data.nav;
+                   tab=data.nav[0].tab;
+                   //  nav渲染
+                   for(var i in nav){
+                       navstr+="<p>"+nav[i].name+"</p>";
+                   }
+                   $(".nav").html(navstr);
+                   //  tab渲染
+                   for(var i in tab){
+                       tabstr+="<li><a href='javascript:;;'>"+tab[i].tabname+"</a></li>"
+                   }
+                   $(".tab-ul").html(tabstr);
+                   //  tab中li的宽度
+                   tabw=100/tab.length+"%";
+                   $(".tab-ul li").width(tabw);
+                   //  详细信息
+                   leftdiv(0);
+                   showdiv()
+                   $(".tab-ul li").on("tap",function () {
+                       tabind=$(this).index();
+                       $(this).find("a").addClass("ass").parent().siblings().find("a").removeClass();
+                       leftdiv(tabind);
+                   })
+                   /*   nav点击  */
+                   $(".nav").on("tap","p",function () {
+
+                       navind=$(this).index();
+                       if(navind==1){
+                           $(".right").css("display","block");
+                           $(".left").css("display","none");
+                           rightdiv(0);
+                           scroll.refresh();
+                       }else if(navind==0){
+                           $(".left").css("display","block");
+                           $(".right").css("display","none");
+                           scroll.refresh();
+                           leftdiv(0);
+                       }
+                       $(this).addClass("colorp").siblings().removeClass();
+                       //  切换tab
+                       tabstr="";
+                       tab=data.nav[navind].tab;
+                       for(var i in tab){
+                           tabstr+="<li><a href='javascript:;;'>"+tab[i].tabname+"</a></li>"
+                       }
+                       $(".tab-ul").html(tabstr);
+                       tabw=100/tab.length+"%";
+                       $(".tab-ul li").width(tabw);
+
+                       $(".tab-ul li").on("tap",function () {
+                           tabind=$(this).index();
+                           $(this).find("a").addClass("ass").parent().siblings().find("a").removeClass();
+                           rightdiv(tabind);
+                           if(tabind==4) return;
+                           leftdiv(tabind);
+                       })
+
+                   });
+                   scroll.refresh();
+
+                   function leftdiv(num){
+                       tab=data.nav[0].tab;
+                       var tablen=tab[num].tabs.length;
+                       showstr="";
+                       for(var j=0;j<tablen;j++){
+                           showstr+="<dl>" +
+                                   "<dt><img src='"+tab[num].tabs[j].url+"' alt=''></dt>" +
+                                   "<dd>" +
+                                   "<p><span>￥"+tab[num].tabs[j].price+"</span>"+tab[num].tabs[j].footname+"</p>" +
+                                   "<p>"+tab[num].tabs[j].address+"</p>" +
+                                   "<p>" +
+                                   "<span>"+tab[num].tabs[j].person+"人推荐</span>" +
+                                   "<span>月售"+tab[num].tabs[j].num+"份</span>" +
+                                   "<span>配送费"+tab[num].tabs[j].prices+"</span>" +
+                                   "</p>" +
+                                   "</dd>" +
+                                   "</dl>" +
+                                   "<div class='dl-div'>" +
+                                    "<p>主荤+半素+素菜+米饭(图片以及菜单仅供参考，以当天菜单及实物为准)</p>" +
+                                   "<p><span class='l-span'>-</span><em class='dl-num'>1</em><span class='r-span'>+</span><i>加入购物车</i></p></div>"
+                       }
+                       $(".left").html(showstr);
+                       scroll.refresh()
+                   }
+                   function rightdiv(num) {
+                       rightdl="";
+                       tab=data.nav[1].tab;
+                       var tablen=tab[num].tabs.length;
+                       for(var j =0;j<tablen;j++){
+                           rightdl+="<dl>" +
+                                   "<dt><img src='"+tab[num].tabs[j].url+"' alt=''></dt>" +
+                                   "<dd>" +
+                                   "<p>"+tab[num].tabs[j].footname+"</p>" +
+                                   "<p><span>*****</span><span>月售"+tab[num].tabs[j].num+"份</span></p>" +
+                                   "<p>" +
+                                   "<span>起送价￥"+tab[num].tabs[j].price+"</span>" +
+                                   "<span>配送费￥"+tab[num].tabs[j].prices+"</span>" +
+                                   "<span>预计"+tab[num].tabs[j].time+"min送达</span>" +
+                                   "</p>" +
+                                   "</dd>" +
+                                   "</dl>"
+                       }
+                       $(".right").html(rightdl);
+                       scroll.refresh();
+                   }
+                   function  showdiv() {
+                       //  dl点击
+                       $(".left").on("tap","dl",function () {
+                           $(this).next().addClass("sdl-div");
+                           scroll.refresh();
+                       });
+                       $(".right").on("tap","dl",function () {
+                           window.location="./app.html"
+                       });
+                       //  加，减
+                       $(".left").on("tap",".l-span",function () {
+                           var number=$(this).next().html();
+                           number--;
+                           if(number<1){
+                               return
+                           }
+
+                           $(this).next().html(number);
+                       })
+                       $(".left").on("tap",".r-span",function () {
+                           var number=$(this).prev().html();
+                           number++;
+                           if(number>10){
+                               return
+                           }
+                           $(this).prev().html(number);
+                       })
+                   }
+               }
+           })
+        })()
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/lunbo.css">
+</head>
+<body>
+	<div id="box">
+		<div id="box1">
+			<img src="images/img1.jpg" alt="">
+			<img src="images/img2.jpg" alt="">
+			<img src="images/img3.jpg" alt="">
+			<img src="images/img4.jpg" alt="">
+		</div>
+		<div id="btn">
+			<span class="left"><</span>
+			<span class="right">></span>
+		</div>
+		<div id="box2">
+			<span>1</span>
+			<span>2</span>
+			<span>3</span>
+			<span>4</span>
+		</div>
+	</div>
+	<script src="jq/jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			var w=$("#box1 img").width()
+			var len =$("#box1 img").length
+			$("#box1").width(w*(len+1))
+			var time=null
+			var ind=0
+			$("#box2 span").eq(0).addClass("span")
+			time=setInterval(move1,1000)
+
+			$("#box").hover(function(){
+				clearInterval(time)
+			},function(){
+				time=setInterval(move1,1000)
+			})
+			$("#box2").on("mouseover","span",function(){
+				ind=$(this).index()
+				move(ind)
+			})
+			function move1(){
+				if($("#box1").is(":animated")) return false
+				ind++
+				if(ind>=len){
+					
+					$("img").first().clone().appendTo("#box1")
+					$("#box1").stop().animate({"left":-w*len},600,function(){
+						$("#box1 img").last().remove()
+						$("#box1").css("left",0)
+					})
+					ind=0
+					$("#box2 span").eq(0).addClass("span").siblings().removeClass("span")
+
+				}else{
+					move(ind)
+				}
+			}
+			function move(ind){
+				$("#box2 span").eq(ind).addClass("span").siblings().removeClass()
+				$("#box1").stop().animate({"left":-w*ind},600)
+			}
+			function move2(){
+				if($("#box1").is(":animated")) return false
+				ind--
+				if(ind<0){
+					$("#box1 img").last().clone().prependTo("#box1")
+					$("#box1").css("left",-w)
+					$("#box1").stop().animate({"left":0},600,function(){
+						$("#box1 img").first().remove()
+						$("#box1").css("left",-(len-1)*w)
+					})
+					ind=len-1
+					$("#box2 span").eq(ind).addClass("span").siblings().removeClass("span")
+				}else{
+					move(ind)
+				}
+			}
+			$(".right").on("click",function(){
+				move1()
+			})
+			$(".left").on("click",function(){
+				move2()
+			})
+		})
+	</script>
+</body>
+</html>

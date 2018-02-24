@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding:0 }
+		#box{width: 600px;height: 500px;margin: 0 auto}
+		.top{width: 500px;height:120px}
+		.top li,.bottom li{width: 100px;height: 27px;font-size: 20px;float: left;list-style: none;text-align: center;background: url(img/bg.jpg) center no-repeat ;background-position: 0 1px;margin: 10px 10px;line-height: 27px}
+		.top .bg{background-position: 0 -26.9px;}
+		#center{height: 80px;}
+		#center #p1{float: left;height: 31px;width: 234px;background: url(img/add.jpg) center no-repeat}
+		#center #btn{background: none;border: none;color: #fff;margin-left: 10px;font-size: 14px}
+		#center #txt{border:none;width: 155px;margin-left: 8px;height: 17px;margin-top: 3px;outline: none;}
+		#p2{width: 280px;height: 14px;font-size: 14px;float: left;background: url(img/tip.jpg) no-repeat center;margin-top:13px ;padding-left: 30px;padding-bottom: 5px;display: none;}
+		.bottom li{background-position:0 -54px;position: relative;}
+		.bottom span{position: absolute;top: 0;right: 0;height: 15px;width: 15px;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul class="top">
+			<li>北京</li>
+			<li>上海</li>
+			<li>天津</li>
+			<li>重庆</li>
+			<li>广东</li>
+			<li>深圳</li>
+			<li>香港</li>
+			<li>杭州</li>
+		</ul>
+		<div id="center">
+			<p id="p1">
+				<input type="text" id="txt" placeholder="请选择城市"><span id="btn">添加城市</span>
+			</p>
+			<p id="p2">选择的城市不能超过三个</p>
+		</div>
+		<ul class="bottom"></ul>
+	</div>
+	<script src="js/jquery1.7.js"></script>
+	<script>
+		$(function(){
+			//top中的li点击
+			$(".top li").on("click",function(){
+				//判断，如果bottom中li超过三个，则不能添加
+				if($(".bottom li").length>=3){
+					//提示框显示
+					$("#p2").css("display","block")
+				}else{
+					//点击的当前li添加class
+					$(this).addClass("bg")
+					var text=$(this).text()
+					//调用函数add
+					add(text)
+				}
+			})
+			$("#btn").on("click",function(){
+				if($(".bottom li").length>=3){
+					//提示框显示
+					$("#p2").css("display","block")
+				}else{
+					var text1=$.trim($("#txt").val())
+					add(text1)
+					$("#txt").val("")
+				}
+				
+			})
+			//后添加元素需要用事件代理
+			$(".bottom").on("click","span",function(){
+				$(this).parent().remove()
+				var text2=$(this).parent().text()
+				//找到top中对应li，删除class
+				$(".top").children().filter(":contains("+text2+")").removeClass("bg")
+				//提示框隐藏
+				$("#p2").css("display","none")
+			
+			})
+			function add(t){
+				$("<li>"+t+"<span></span></li>").appendTo($(".bottom"))
+			}
+		})
+	</script>
+</body>
+</html>

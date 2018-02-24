@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{margin: 0;padding: 0}
+	.box{height:450px;width: 500px;border: 1px solid #ccc;margin:  0 auto;padding: 30px;padding-right: 0;background:url("images/bg_blue_02.png");}
+	li{list-style: none;border: 1px solid #ccc;float: left;width: 80px;height: 80px;margin-left: 15px;margin-top: 15px;background: #edf3f3}
+	.top li{position: relative;position: relative;}
+	.top .lis{background: url("images/bg.gif")}
+	.bottom{clear:both;height: 220px;width: 490px;margin-top: 20px}
+	p{clear: both;padding-top:10px}
+	li dl{text-align: center;margin-top: 15px}
+	li dd{font-size:12px;padding-top: 5px}
+	li em{cursor: pointer;position: absolute;right: 0;top: 0}
+</style>
+<body>
+	<div class="box">
+		<p>展示勋章</p>
+		<div class="top">
+			<ul>
+				<li>
+					<dl>
+						<dt><img src="images/7.gif" alt=""></dt>
+						<dd>刘翔粉丝</dd>
+					</dl>
+					<em class="em"><img src="images/ca.png" alt=""></em>
+				</li>
+				<li class="lis"></li>
+				<li class="lis"></li>
+				<li class="lis"></li>
+				<li class="lis"></li>
+				<li class="lis"></li>
+				<li class="lis"></li>
+			</ul>
+		</div>
+		<p>隐藏勋章</p>
+		<div class="bottom">
+			<ol>
+				<li>
+					<dl>
+						<dt><img src="images/1.gif" alt=""></dt>
+						<dd>谈笑风生</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt><img src="images/2.gif" alt=""></dt>
+						<dd>微身份</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt><img src="images/3.gif" alt=""></dt>
+						<dd>电视迷</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt><img src="images/4.gif" alt=""></dt>
+						<dd>巨人</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt><img src="images/5.gif" alt=""></dt>
+						<dd>游戏大王</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt><img src="images/6.gif" alt=""></dt>
+						<dd>火炬手</dd>
+					</dl>
+				</li>
+			</ol>
+		</div>
+	</div>
+	<script src="js/jquery1.7.js"></script>
+	<script>
+		$(function(){
+			
+			$(".bottom").on("click","li",function(){
+				/*创建em,点击删除的按钮*/
+				var em=$("<em class='em'><img src='images/ca.png'></em>")
+				/*将class名为lis的第一个添加内容并且删除class名*/
+				$(".top .lis").first().append(em)
+				$(".top .lis").first().append($(this).find("dl")).removeClass()
+				/*删除当前元素*/
+				$(this).remove()
+			})
+			$(".top").on("click","em",function(){
+				/*创建bottom的li*/
+				var li=$("<li>"+$(this).parent().first().html()+"</li>")
+				/*创建top中的li*/
+				var lia=$("<li class='lis'></li>")
+				/*当前祖父元素追加lia*/
+				$(this).parents("ul").append(lia)
+				/*bottom追加li*/
+				$(".bottom").append(li)
+				/*删除当前父元素li*/
+				$(this).parents("li").remove()
+			})
+			$(".bottom").on("mousedown","li",function(e){
+				var This=$(this)
+				var x=e.pageX-$(this).offset().left
+				var y=e.pageY-$(this).offset().top
+				//阻止默认行为
+				e.preventDefault()
+				$(document).on("mousemove",function(e){
+					e.preventDefault()
+					var x1=e.pageX-x
+					var y1=e.pageY-y
+					/*if(x1<0){
+						x1=0
+					}else if(x1>window.innerWidth-$(This).outerWidth()){
+						x1=window.innerWidth-$(This).outerWidth()
+					}
+					if(y1<0){
+						y1=0
+					}else if(y1>window.innerHeight-$(This).outerHeight()){
+						y1=window.innerHeight-$(This).outerHeight()
+					}*/
+					/*给当前li定位，使其脱离文档流*/
+					
+					This.css({"left":x1,"top":y1,"position":"absolute"})
+				})
+				$(document).on("mouseup",function(){
+					$(document).off("mousemove")
+				})
+			})
+		})
+	</script>
+</body>
+</html>

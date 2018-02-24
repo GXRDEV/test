@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/jingdian.css">
+</head>
+<body>
+<div class="content">
+    <div class="header">
+        <span>北京</span>
+        <p>
+            <em class="fa fa-search"></em>
+            <input type="text" placeholder="北京">
+            <em class="fa fa-film"></em>
+        </p>
+        <span class="fa fa-phone"></span>
+    </div>
+    <div class="section">
+        <div class="left">
+            <ul>
+                <li class="tap-li"><a href="javescript:;;">热门</a></li>
+                <li><a href="javescript:;;">周边</a></li>
+                <li><a href="javescript:;;">国内</a></li>
+                <li><a href="javescript:;;">马尔代夫</a></li>
+                <li><a href="javescript:;;">欧洲</a></li>
+                <li><a href="javescript:;;">美洲</a></li>
+                <li><a href="javescript:;;">韩国</a></li>
+                <li><a href="javescript:;;">日本</a></li>
+                <li><a href="javescript:;;">泰国</a></li>
+                <li><a href="javescript:;;">东南亚</a></li>
+                <li><a href="javescript:;;">南亚</a></li>
+                <li><a href="javescript:;;">港澳</a></li>
+                <li><a href="javescript:;;">欧洲</a></li>
+                <li><a href="javescript:;;">美洲</a></li>
+                <li><a href="javescript:;;">韩国</a></li>
+                <li><a href="javescript:;;">日本</a></li>
+                <li><a href="javescript:;;">泰国</a></li>
+                <li><a href="javescript:;;">东南亚</a></li>
+                <li><a href="javescript:;;">南亚</a></li>
+                <li><a href="javescript:;;">港澳</a></li>
+            </ul>
+        </div>
+        <div class="right">
+            <div class="r-main">
+                <h3><span>6月旅游好时节</span></h3>
+                <div class="r-box">
+                    <p>
+                        <span>
+                            <em>云南</em>
+                            <em>走到哪里都是风景</em>
+                        </span>
+                        <span>
+                            <em>三亚</em>
+                            <em>海天一色</em>
+                        </span>
+                    </p>
+                    <p>
+                        <span>
+                            <em>厦门</em>
+                            <em>让时间慢下来</em>
+                        </span>
+                        <span>
+                            <em>九寨沟</em>
+                            <em>九寨归来不开水</em>
+                        </span>
+                    </p>
+                </div>
+                <h3><span>初夏甜蜜出境</span></h3>
+                <div class="r-box">
+                    <p>
+                        <span>
+                            <em>云南</em>
+                            <em>走到哪里都是风景</em>
+                        </span>
+                        <span>
+                            <em>三亚</em>
+                            <em>海天一色</em>
+                        </span>
+                    </p>
+                    <p>
+                        <span>
+                            <em>厦门</em>
+                            <em>让时间慢下来</em>
+                        </span>
+                        <span>
+                            <em>九寨沟</em>
+                            <em>九寨归来不开水</em>
+                        </span>
+                    </p>
+                </div>
+                <h3><span>浪漫海岛出游季</span></h3>
+                <div class="r-box">
+                    <p>
+                        <span>
+                            <em>云南</em>
+                            <em>走到哪里都是风景</em>
+                        </span>
+                        <span>
+                            <em>三亚</em>
+                            <em>海天一色</em>
+                        </span>
+                    </p>
+                    <p>
+                        <span>
+                            <em>厦门</em>
+                            <em>让时间慢下来</em>
+                        </span>
+                        <span>
+                            <em>九寨沟</em>
+                            <em>九寨归来不开水</em>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>
+            <img src="./img/footer_03.png" alt=""><i>首页</i>
+        </p>
+        <p>
+            <img src="./img/footer_05.png" alt=""><i>目的地</i>
+        </p>
+        <p>
+            <img src="./img/footer_07.png" alt=""><i>发现</i>
+        </p>
+        <p>
+            <img src="./img/footer_09.png" alt=""><i>行程玩法</i>
+        </p>
+        <p>
+            <img src="./img/footer_11.png" alt=""><i>我的</i>
+        </p>
+    </div>
+    <script src="./js/zepto.min.js"></script>
+    <script src="./js/iscroll.js"></script>
+   
+    <script>
+        document.documentElement.style.fontSize=document.documentElement.clientWidth/5.4+"px"
+        new IScroll(".left",{})
+        new IScroll(".right",{
+            scrollbars:true,
+            fadeScrollbars:true
+        });
+        $(".left li").on("tap",function(){
+            $(this).addClass("tap-li").siblings().removeClass()
+        })
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{margin: 0;padding: 0}
+	#max{height: 150px;width: 810px;border: 1px solid orange;padding: 10px;margin: 0 auto;padding-right: 0}
+	.min{height: 150px;width: 150px;margin-right: 10px;border: 1px solid #ccc;float: left;}
+	.box{height: 150px;width: 150px;margin-right: 10px;border:1px dashed green;position: absolute;background: #ccc;opacity: 0.5}
+	.addDiv{height: 150px;width: 150px;margin-right: 10px;border: 1px dashed red;float: left;}
+</style>
+<body>
+	<div id="max">
+		<div class="min">1</div>
+		<div class="min">2</div>
+		<div class="min">3</div>
+		<div class="min">4</div>
+		<div class="min">5</div>
+	</div>
+	<script src="js/jquery1.7.js"></script>
+	<script>
+		$(function(){
+			var move=false
+			/*首先获取当前盒子的位置*/
+			var minposi={x:0,y:0}
+			/*鼠标相对于当前盒子的距离*/
+			var pageOne={x:0,y:0}
+			$(".min").each(function(){
+				$(this).on("mousedown",function(e){
+					thisbox=$(this)
+					move=true
+					minposi.x=$(this).offset().left
+					minposi.y=$(this).offset().top
+					/*出现虚影盒子，删除原来的class，添加新的class*/
+					$(this).removeClass().addClass("box")
+					/*添加盒子，前插入*/
+					dv1=$("<div class='addDiv'></div>")
+					dv1.insertBefore($(this))
+					/*固定原来盒子的位置*/
+					$(this).css({"left":minposi.x,"top":minposi.y})
+					/*鼠标相对于当前盒子的距离*/
+					pageOne.x=e.pageX-minposi.x
+					pageOne.y=e.pageY-minposi.y
+
+				})
+			})
+			$(document).on("mousemove",function(e){
+				/*盒子移动*/
+				if(!move) return false
+				var pageTwo={x:0,y:0}
+				pageTwo.x=e.pageX-pageOne.x
+				pageTwo.y=e.pageY-pageOne.y
+				thisbox.css({"left":pageTwo.x,"top":pageTwo.y})
+				var allbox=$(".min")
+				
+				allbox.each(function(){
+					var _this=$(this)
+					var addleft=_this.offset().left+_this.outerWidth()/2
+					var rig=thisbox.offset().left+thisbox.outerWidth()
+
+					if(rig>=addleft){
+						$(".addDiv").insertAfter(_this)
+					}
+					var first=allbox.first()
+					var firstcen=first.offset().left+first.outerWidth()/2
+					if(thisbox.offset().left<=firstcen){
+						$(".addDiv").insertBefore(first)
+					}
+				})
+			})
+			$(document).on("mouseup",function(){
+				move=false
+				thisbox.removeClass().addClass("min")
+				thisbox.insertBefore(".addDiv")
+				$(".addDiv").remove()
+			})			
+		})
+	</script>
+</body>
+</html>

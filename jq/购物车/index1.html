@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<link rel="stylesheet" href="css/index.css">
+	<div id="box">
+		<div class="box1">
+			<dl>
+				<dt><img src="images/img1.jpg" alt=""></dt>
+				<dd>
+					<p>《全民畅饮》</p>
+				</dd>
+			</dl>
+			<div class="box2">
+				<p class="price">单价:<a href="javascript:;;">￥300</a></p>
+				<p class="btn">
+					<span class="remove1">-</span><input type="text" value="1"><span class="add1">+</span>
+				</p>
+				
+			</div>
+		</div>
+		<div class="box1">
+			<dl>
+				<dt><img src="images/img2.jpg" alt=""></dt>
+				<dd>
+					<p>《空调手机》</p>
+				</dd>
+			</dl>
+			<div class="box2">
+				<p class="price">单价:<a href="javascript:;;">￥100</a></p>
+				<p class="btn">
+					<span class="remove1">-</span><input type="text" value="1"><span class="add1">+</span>
+				</p>
+				
+			</div>
+		</div>
+		<div class="box1">
+			<dl>
+				<dt><img src="images/img3.jpg" alt=""></dt>
+				<dd>
+					<p>《一元抢宝》</p>
+				</dd>
+			</dl>
+			<div class="box2">
+				<p class="price">单价:<a href="javascript:;;">￥150</a></p>
+				<p class="btn">
+					<span class="remove1">-</span><input type="text" value="1"><span class="add1">+</span>
+				</p>
+				
+			</div>
+		</div>
+		<div class="bottom">
+			<span>购买物品</span><input type="text" class="txt1">
+			<span>总价</span><input type="text" class="txt2">
+		</div>
+	</div>
+	<script src="js/jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			
+			$(".add1").on("click",function(){
+				var vall=parseInt($(this).prev().val())
+				vall++
+				if(vall>10){
+					vall=10
+					alert("最多购买十件商品")
+				}
+				$(this).prev().val(vall)
+				price()
+			})
+			$(".remove1").on("click",function(){
+				var vall=parseInt($(this).next().val())
+				vall--
+				
+				if(vall<1){
+					vall=1
+					var ce=confirm("确认删除吗")
+					if(ce){
+						$(this).parents(".box1").remove()
+						som()
+					}
+
+				}
+				$(this).next().val(vall)
+				price()
+			})
+			$(".btn input").on("change",function(){
+				price()
+			})
+			function som(){
+				var len=$(".box1").length
+				$(".txt1").val(len)
+			}
+			som()
+			function price(){
+				var zprice=0
+				$.each($(".btn input"),function(){
+					var dprice=$(this).parent().prev().find("a").text().slice(1)
+					zprice+=dprice*$(this).val()
+				})
+				$(".txt2").val(zprice)
+			}
+			price()
+		})
+		
+	</script>
+</body>
+</html>

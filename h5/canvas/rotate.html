@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .cvs{
+        border: 5px solid #ccc;
+    }
+</style>
+<body>
+    <canvas class="cvs" width="500" height="500"></canvas>
+    <script>
+        var canvas=document.querySelector(".cvs");
+        var cvs=canvas.getContext("2d");
+        cvs.strokeStyle="red";
+        cvs.strokeRect(200,200,100,100);
+        cvs.translate(250,250);
+        var i=1;
+        setInterval(function(){
+            cvs.clearRect(-250,-250,500,500);
+            cvs.save();
+            cvs.rotate(i++*Math.PI/180);
+            cvs.strokeRect(-50,-50,100,100);
+            cvs.restore();
+        },1000/60)
+    </script>
+</body>
+</html>

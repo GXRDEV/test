@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .box{
+        width: 400px;
+        height: 400px;
+        margin: 20px auto;
+    }
+    .cvs{
+        border: 3px solid #ccc;
+    }
+</style>
+<body>
+<div class="box">
+    <canvas width="400" height="400" class="cvs"></canvas>
+</div>
+
+<script>
+    var canvas=document.querySelector(".cvs");
+    var cvs=canvas.getContext("2d");
+    var startX,startY,endX,endY,moveX,moveY,down=false;
+    cvs.beginPath();
+
+    cvs.lineWidth=3;
+    var offset=canvas.getBoundingClientRect();
+    console.log(offset);
+    function color(){
+        return "rgb("+Math.floor(Math.random()*256)+","+Math.floor(Math.random()*256)+","+Math.floor(Math.random()*256)+")";
+    }
+    canvas.addEventListener("mousedown",function(e){
+        e.preventDefault();
+        cvs.moveTo(startX,startY);
+        down=true;
+        startX=e.clientX-offset.left;
+        startY=e.clientY-offset.top;
+    },false);
+    canvas.addEventListener("mousemove",function (e) {
+        if(!down) return;
+        cvs.strokeStyle = color();
+        cvs.beginPath();
+        moveX=e.clientX-offset.left;
+        moveY=e.clientY-offset.top;
+        cvs.moveTo(startX,startY);
+        cvs.lineTo(moveX,moveY);
+        cvs.stroke();
+        cvs.closePath();
+        startX=moveX;
+        startY=moveY
+    },false);
+    document.addEventListener("mouseup",function(e){
+        down=false;
+    })
+</script>
+</body>
+</html>

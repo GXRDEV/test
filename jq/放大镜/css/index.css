@@ -1,0 +1,13 @@
+*{margin: 0;padding: 0}
+#box{height: 516px;width:1400px;margin: 0 auto;border: 1px solid #ccc;position: relative}
+#left{width: 600px;overflow: hidden;float: left;}
+#max{height:400px;}
+#max img{height:400px;width: 600px;float: left;}
+#min{height: 100px;padding-top: 15px;}
+#min img{height: 100px;width: 150px;float: left;}
+p{position: absolute;bottom:30px;font-size: 30px;background: #ccc;height: 50px;text-align: center;line-height: 50px;width: 30px;border-radius: 30px;cursor: pointer;}
+#left1{left: 0}
+#right1{left: 570px}
+#right{display: none;float: right;height:400px;width: 600px;border: 1px solid #ccc;overflow: hidden;}
+#right img{height: 800px;width: 1200px}
+#max #span1{z-index: 1000;height: 200px;width: 300px;background: #ccc;position: absolute;top: 0;left: 0;display: none;opacity: 0.5}

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .cvs{
+        border: 5px solid lightslategrey;
+    }
+</style>
+<body>
+    <canvas width="400" height="400" class="cvs"></canvas>
+    <script>
+        var canvas = document.querySelector(".cvs");
+        var cvs=canvas.getContext("2d");
+        var data = [
+            {
+                "title":"郭祥然",
+                "age":21,
+                "color":"#f5f5f5"
+            },
+            {
+                "title":"崔磊磊",
+                "age":21,
+                "color":"#ccc"
+            },
+            {
+                "title":"孙铭康",
+                "age":21,
+                "color":"red"
+            },
+            {
+                "title":"王欢欢",
+                "age":19,
+                "color":"purple"
+            },
+            {
+                "title":"王真真",
+                "age":19,
+                "color":"pink"
+            }
+        ];
+        //  圆心，圆心，半径 ，起始角度，结束角度(Math.PI为180)，方向
+        var ages=0
+        data.forEach(function(val,i){
+            ages+=val.age
+        });
+        var start=0;
+        for(var i in data){
+            var du=data[i].age/ages*360;
+            draw(200,200,100,start,start+du,data[i].color)
+            start+=du;
+        }
+        function draw(x,y,r,start,end,color){
+            var single=Math.PI/180;
+            cvs.fillStyle=color;
+            cvs.beginPath();
+            cvs.moveTo(x,y);
+            cvs.arc(x,y,r,start*single,end*single,false);
+            cvs.closePath();
+            cvs.fill();
+        }
+    </script>
+</body>
+</html>

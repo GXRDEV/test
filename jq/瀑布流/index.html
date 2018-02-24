@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{margin: 0;padding: 0}
+	.box{position: relative;margin: 0 auto}
+	.box img{position: absolute;}
+</style>
+<body>
+	<div class="box">
+		
+		<img src="images/3.jpg" alt="">
+		<img src="images/2.jpg" alt="">
+		<img src="images/4.jpg" alt="">
+		<img src="images/1.jpg" alt="">
+		<img src="images/5.jpg" alt="">
+		<img src="images/6.jpg" alt="">
+		<img src="images/7.jpg" alt="">
+		<img src="images/8.jpg" alt="">
+		<img src="images/9.jpg" alt="">
+		<img src="images/10.jpg" alt="">
+		<img src="images/5.jpg" alt="">
+		<img src="images/6.jpg" alt="">
+		<img src="images/7.jpg" alt="">
+	</div>
+	<script src="js/jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			var w=$(".box img").width()+20
+			//每一列的图片个数
+			var len=parseInt($(window).width()/w)
+			//盒子宽度
+			$(".box").width(w*len)
+			//console.log($(".box").width())
+			//console.log(len)
+			var arr=[]
+			var p=0
+
+			function auto(star,end){
+				
+				for(var i=star;i<end;i++){
+					var h=$(".box img").eq(i).height()+30
+					//console.log(h)
+					if(i<len){
+						arr.push(0)
+					}
+					var minh=Math.min.apply(Math,arr)
+					var minindex=arr.indexOf(minh)
+					$(".box img").eq(i).stop().animate({"left":minindex*w,"top":minh})
+					arr[minindex]+=h
+					p++
+				}
+				console.log(minindex)
+			}
+			auto(0,$(".box img").length)
+			function add(){
+				var tu={"tu1":[
+					{"src":"images/8.jpg"},
+					{"src":"images/9.jpg"},
+					{"src":"images/10.jpg"},
+					{"src":"images/1.jpg"},
+					{"src":"images/2.jpg"},
+					{"src":"images/3.jpg"},
+					{"src":"images/11.jpg"},
+					{"src":"images/12.jpg"}
+				]}
+				auto(p,$(".box img").length)
+				var maxh=Math.max.apply(Math,arr)
+				var maxindex=arr.indexOf(maxh)
+				
+				$.each(tu.tu1,function(i,vall){
+					$("<img>").attr(vall).css({"left":maxindex*w,"top":maxh}).appendTo($(".box"))
+				})
+				
+			}
+			$(window).on("scroll",function(){
+				var he=$(document).height()-$(window).height()
+				if($(window).scrollTop()>=he){
+					add()
+				}
+			})
+			
+		})
+	</script>
+</body>
+</html>

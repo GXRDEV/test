@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{margin: 0;padding:0 }
+	#max{height: 200px;width: 800px;position: relative;margin: 20px auto;overflow: hidden;}
+	#min{position: absolute;}
+	#max img{height: 200px;width: 200px;float: left;border: 1px solid #ccc}
+	#max .left{position: absolute;background: #ccc;width: 30px;height: 50px;top:70px;font-size: 30px;text-align: center;line-height: 50px;left: 0}
+	#max .right{position: absolute;background: #ccc;width: 30px;height: 50px;top:70px;font-size: 30px;text-align: center;line-height: 50px;right: 0}
+</style>
+<body>
+	<div id="max">
+		<div id="min">
+			<img src="images/1.jpg" alt="">
+			<img src="images/2.jpg" alt="">
+			<img src="images/3.jpg" alt="">
+			<img src="images/4.jpg" alt="">
+			<img src="images/5.jpg" alt="">
+			<img src="images/6.jpg" alt="">
+			<img src="images/7.jpg" alt="">
+			<img src="images/8.jpg" alt="">
+			<img src="images/9.jpg" alt="">
+			<img src="images/10.jpg" alt="">
+			<img src="images/11.jpg" alt="">
+		</div>
+		<span class="left"><</span>
+		<span class="right">></span>
+	</div>
+	<script src="js/jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			//图片长度
+			var len=$("img").length
+			//图片宽度，包括边框
+			var w=$("img").outerWidth()
+			//点击之后移动的图片个数
+			var index1=4
+			//设置min的宽度
+			$("#min").width(len*w)
+
+			$(".right").on("click",function(){
+				//点击right的时候min向左移动
+				$("#min").stop().animate({"left":-w*index1},1000,function(){
+					//截取移动的图片并将其appendTo到min中
+					$("#min img").slice(0,index1).appendTo("#min")
+					//令min的left为0
+					$("#min").css("left",0)
+				})
+			})
+			$(".left").on("click",function(){
+				
+				$("#min img").slice(len-index1).prependTo("#min")
+				$("#min").css("left",-w*index1)
+				$("#min").stop().animate({"left":0},1000)
+			})
+		})
+	</script>
+</body>
+</html>

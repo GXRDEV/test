@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/shop.css">
+</head>
+<body>
+    <div class="content">
+        <div class="header">
+            <span>返回</span>
+            <p>配送信息</p>
+            <span class="fa fa-ellipsis-h"></span>
+        </div>
+        <div class="section">
+            <div class="top">
+                <span><img src="./images/tus_03.jpg" alt=""></span>
+                <p>小问为您找到50家店铺,有您喜欢的吗？</p>
+            </div>
+            <div class="main">
+                <ul class="tab-ul"></ul>
+                <div class="mains">
+                    <div class="shows"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/zepto.min.js"></script>
+    <script src="./js/iscroll.js"></script>
+    <script>
+        document.documentElement.style.fontSize=document.documentElement.clientWidth/7.5+"px";
+        ;(function () {
+            var scroll=new IScroll(".mains");
+            $.ajax({
+                "url":"data.json",
+                success:function (data) {
+                    var tab,tabli="",rightdl="",tabund;
+                    tab=data.nav[1].tab;
+                    for(var i in tab){
+                        tabli+="<li><a href='javascript:;;'>"+tab[i].tabname+"</a></li>"
+                    }
+                    $(".tab-ul").html(tabli);
+                    //  tab中li的宽度
+                    tabw=100/tab.length+"%";
+                    $(".tab-ul li").width(tabw);
+                    rightdiv(0);
+                    $(".tab-ul li").on("tap",function () {
+                        tabind=$(this).index();
+                        $(this).find("a").addClass("ass").parent().siblings().find("a").removeClass();
+                        rightdiv(tabind);
+                    });
+                    $(".shows").on("tap","dl",function () {
+                        window.location="./app.html"
+                    });
+                    function rightdiv(num) {
+                        rightdl="";
+                        tab=data.nav[1].tab;
+                        var tablen=tab[num].tabs.length;
+                        for(var j =0;j<tablen;j++){
+                            rightdl+="<dl>" +
+                                    "<dt><img src='"+tab[num].tabs[j].url+"' alt=''></dt>" +
+                                    "<dd>" +
+                                    "<p>"+tab[num].tabs[j].footname+"</p>" +
+                                    "<p><span>*****</span><span>月售"+tab[num].tabs[j].num+"份</span></p>" +
+                                    "<p>" +
+                                    "<span>起送价￥"+tab[num].tabs[j].price+"</span>" +
+                                    "<span>配送费￥"+tab[num].tabs[j].prices+"</span>" +
+                                    "<span>预计"+tab[num].tabs[j].time+"min送达</span>" +
+                                    "</p>" +
+                                    "</dd>" +
+                                    "</dl>"
+                        }
+                        $(".shows").html(rightdl);
+                        scroll.refresh();
+                    }
+                    scroll.refresh();
+                }
+            })
+        })()
+
+    </script>
+</body>
+</html>

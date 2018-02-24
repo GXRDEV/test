@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<link rel="stylesheet" href="css/index.css">
+<body>
+	<div id="box">
+		<div id="left">
+			<div id="max">
+				<div>
+					<span id="span1"></span>
+				</div>
+				<div id="images1">
+					<img src="images/img1.jpg" alt="">
+					<img src="images/img2.jpg" alt="">
+					<img src="images/img3.jpg" alt="">
+					<img src="images/img4.jpg" alt="">
+					<img src="images/5.jpg" alt="">
+				</div>
+				
+			</div>
+			<div id="min">
+				<img src="images/img1.jpg" alt="" >
+				<img src="images/img2.jpg" alt="">
+				<img src="images/img3.jpg" alt="">
+				<img src="images/img4.jpg" alt="">
+				<img src="images/5.jpg" alt="">
+				<p id="left1"><</p>
+				<p id="right1">></p>
+			</div>
+			
+		</div>
+		<div id="right">
+			
+		</div>
+	</div>
+	<script src="js/jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			var len=$("#min img").length
+			//max图片宽度、高度
+			var w=$("#max img").width()
+			var h=$("#max img").height()
+			//min图片宽度
+			var minw=$("#min img").outerWidth()
+			//虚影的宽度、高度
+			var spanw=$("#span1").width()
+			var spanh=$("#span1").height()
+			var index1=1
+			//min的总宽度
+			$("#min").width(len*minw)
+			//max的宽度
+			 $("#max").width(len*w)
+
+			//首先显示的图片
+			$("#min img").eq(0).clone().appendTo("#right")
+
+			
+			$("#min img").on("click",function(){
+				var ind=$(this).index()
+				console.log(ind)
+				$("#images1 img").remove()
+				$("#min img").eq(ind).clone().appendTo("#images1")
+				$("#right img").remove()
+				$("#min img").eq(ind).clone().appendTo("#right")
+					
+			})
+			
+
+
+			//right点击
+			$("#right1").on("click",function(){
+				if($("#min").is(":animated")) return false;
+				$("#min").stop().animate({"marginLeft":-index1*minw},function(){
+					$("#min img").slice(0,index1).appendTo("#min")
+					$("#min").css("marginLeft",0)
+					show1()
+				})
+			})
+
+
+			//left点击
+			$("#left1").on("click",function(){
+				if($("#min").is(":animated")) return false;
+				$("#min img").slice(len-index1).prependTo("#min")
+				$("#min").css("marginLeft",-index1*minw)
+				$("#min").stop().animate({"marginLeft":0},500)
+				show1()
+			})
+
+
+
+			function show1(){
+				$("#max img").remove()
+				$("#min img").eq(0).clone().appendTo("#max")
+				$("#right img").remove()
+				$("#min img").eq(0).clone().appendTo("#right")
+			}
+
+
+
+			$("#max").on("mouseover",function(){
+				$("#span1").css("display","block")
+				$("#right").css("display","block")
+			})
+
+			//放大镜效果
+			$("#max").on("mousemove",function(e){
+				var x=e.pageX-$(this).offset().left-$("#span1").width()/2
+				var y=e.pageY-$(this).offset().top-$("#span1").height()/2
+				if(x<0){
+					x=0
+				}else if(x>w-spanw){
+					x=w-spanw
+				}
+				if(y<0){
+					y=0
+				}else if(y>h-spanh){
+					y=h-spanh
+				}
+				var bigx=$("#right img").width()/$(this).width()*x
+				var bigy=$("#right img").height()/$(this).height()*y
+				$("#span1").css({"marginLeft":x,"marginTop":y})
+				$("#right img").css({"marginLeft":-bigx*5,"marginTop":-bigy})
+			})
+		})
+	</script>
+</body>
+</html>

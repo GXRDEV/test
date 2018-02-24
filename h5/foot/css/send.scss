@@ -1,0 +1,120 @@
+@import "./reset";
+@import "./font-awesome.css";
+body{
+  font-size: 16px;
+}
+.content{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .header{
+    height: .96rem;
+    background: #1b1b20;
+    color: #fff;
+    position: relative;
+    line-height: .96rem;
+    p{
+      font-size: .36rem;
+      text-align: center;
+    }
+    span{
+      position: absolute;
+    }
+    span:first-child{
+      padding-left: .56rem;
+      font-size: .3rem;
+      &:after{
+        content:"";
+        position: absolute;
+        border: .17rem solid transparent;
+        left: .1rem;
+        border-right-color:#fff;
+        top: .3rem;
+      }
+      &:before{
+        content:"";
+        position: absolute;
+        border: .17rem solid transparent;
+        left: .14rem;
+        border-right-color:#1b1b20;
+        z-index: 1;
+        top: .3rem;
+      }
+    }
+    span:last-child{
+      top: .3rem;
+      right: .3rem;
+    }
+  }
+  .section{
+    background: #f7f7f7;
+    flex: 1;
+    .top{
+      height: 1.8rem;
+      padding: .48rem .4rem;
+      span{
+        background: #fff;
+        float: left;
+        width: .84rem;
+        border: 1px solid #ccc;
+        border-radius: .2rem;
+        padding: .08rem .06rem;
+      }
+      p{
+        background: #fff;
+        float: left;
+        height: .84rem;
+        width: 3.66rem;
+        border: 1px solid #ccc;
+        font-size: .24rem;
+        line-height: .84rem;
+        padding-left: .28rem;
+        border-radius: .2rem;
+        margin-left: .23rem;
+      }
+    }
+    ul{
+      box-sizing: border-box;
+      border-top: 1px solid #ebebeb;
+      border-bottom: 1px solid #ebebeb;
+      background: #fff;
+      width: 100%;
+      li{
+        height: .84rem;
+        line-height: .84rem;
+        font-size: .26rem;
+        border-bottom: 1px solid #ebebeb;
+        margin-left: .4rem;
+        span{
+          color: #888;
+          width: 1.15rem;
+          float: left;
+        }
+        input{
+          padding-left: .6rem;
+          width: 70%;
+        }
+        i{
+          position: absolute;
+          right: .34rem;
+        }
+      }
+      li:last-child{
+        border-bottom: none;
+      }
+    }
+    .btn{
+      height: .78rem;
+      width: 89.33%;
+      background: #8476d7;
+      font-size: .26rem;
+      color: #fff;
+      text-align: center;
+      line-height: .78rem;
+      margin: 0 auto;
+      margin-top: .8rem;
+      border-radius: .15rem;
+    }
+  }
+}

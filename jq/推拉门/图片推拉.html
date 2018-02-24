@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0}
+		#box{height: 120px;position: relative;border: 1px solid #ccc;margin: 0 auto}
+		img{float: left;position: absolute;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<img src="images/1.png" alt="">
+		<img src="images/2.png" alt="">
+		<img src="images/3.png" alt="">
+		<img src="images/4.png" alt="">
+		<img src="images/5.png" alt="">
+		<img src="images/6.png" alt="">
+	</div>
+	<script src="js/jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			var width1=$("img").width()
+			var len=$("img").length
+			var Left=40
+			//将最后一张图片定位
+			$("img").eq(len-1).css("right",0)
+			//除了最后一张图片的所有图片集合
+			var imgs=$("img").not($("img").eq(len-1))
+			
+			$("#box").css("width",660+Left*(imgs.length-1))
+			console.log($("#box").width())
+			$.each(imgs,function(i){
+				if(i==0){
+					$(this).css("marginLeft",0)
+				}else{
+					$(this).css("marginLeft",width1+(i-1)*Left)
+				}
+			})
+			$("#box").on("mouseover","img",function(){
+				var img1=$(imgs).slice(1,$(this).index()+1)
+				img1.stop().animate({"left":-width1+Left},500)
+				imgs.not(img1).stop().animate({"left":0},500)
+			})
+		})
+	</script>
+</body>
+</html>

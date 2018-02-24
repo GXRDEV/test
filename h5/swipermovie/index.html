@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/font-awesome.css">
+</head>
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="h-top">
+                <span>影城</span>
+                <h1>国际影城</h1>
+                <span>!</span>
+            </div>
+            <div class="h-dowm">
+                影院重装开业，会员卡购票可享5折优惠
+            </div>
+        </div>
+        <div class="section">
+            <div class="swiper-container nav">
+                <ul class="swiper-wrapper"></ul>
+            </div>
+        </div>
+    </div>
+    <script src="./js/zepto.min.js"></script>
+    <script src="./js/swiper.js"></script>
+    <script>
+        document.documentElement.style.fontSize=document.documentElement.clientWidth/6.4+"px";
+        $.ajax({
+            url:"./data.json",
+            type:"POST",
+            dataType:"json",
+            success:function(datas){
+               var data=datas.data.movie_data;
+               var picture="";
+               for(var i in data){
+                   picture+="<li class='swiper-slide'><img src='"+data[i].movie_img_url+"'></li>"
+               }
+               $(".swiper-wrapper").html(picture)
+
+               // 调用swiper插件
+               var swipe=new Swiper(".nav",{
+                   // 自由模式
+                    freeMode:true,
+                   // 默认设置页面显示数量
+                   slidesPerView:"auto",
+                   // spaceBetween:10/*  设置间距  */
+                   onTap:function(e){
+                      // $(".swiper-slide").eq(e.clickedIndex).find("img").addClass("active").parent().siblings().children().removeClass();
+                       $(".swiper-slide").eq(e.clickedIndex).addClass("active").siblings().removeClass("active");
+
+                       //  console.log(e.clickedIndex);
+                      //  swipe.slideTo(e.clickedIndex,300);
+                   }
+               });
+               $(".swiper-slide").eq(0).addClass("active")
+            }
+        })
+    </script>
+</body>
+</html>

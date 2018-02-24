@@ -1,0 +1,106 @@
+@import "./reset.scss";
+body{
+  font-size: 16px;
+}
+.content{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .header{
+    height: .42rem;
+    border-bottom: 1px solid #b0b0b0;
+    text-align: center;
+    span{
+      color: #a49a99;
+      line-height: .42rem;
+      position: relative;
+      font-size: .18rem;
+    }
+    span:nth-child(1){
+      position: absolute;
+      left: .27rem;
+      color: #75caf3;
+    }
+
+    span:nth-child(3){
+      position: absolute;
+      right: .2rem;
+      color: #75caf3;
+    }
+  }
+  .section{
+    padding-top: .3rem;
+    padding: .3rem .15rem 0 .15rem;
+    ul{
+      li{
+        margin-bottom: .16rem;
+        height: .36rem;
+        line-height: .36rem;
+        .number{
+          width: 100%;
+          height: 100%;
+          border: 1px solid #d4d4d4;
+          font-size: .1rem;
+          color: #999999;
+        }
+        .btn{
+          background: #ccc;
+          font-size: .14rem;
+          width: 100%;
+          height: 100%;
+          color: #fff;
+        }
+        .btna{
+          background: #e84a47;
+        }
+        .radiobtn{
+          display: inline-block;
+          font-size: .12rem;
+          color: #999;
+          background: url("../images/yuan_03.png") no-repeat left center;
+          background-size: .16rem .16rem;
+          padding-left: .16rem;
+        }
+        input[type="radio"]:checked+.radiobtn{
+          background: url("../images/chekicon.png") no-repeat left center;
+          background-size: .16rem .16rem;
+        }
+      }
+      li:nth-child(2){
+        border: 1px solid #d4d4d4;
+        .admin{
+          width: 70%;
+          font-size: .1rem;
+          color: #999;
+        }
+        .btns{
+          width: .83rem;
+          height: 100%;
+          float: right;
+          border-radius: .18rem;
+          background: url("../images/switch-hidden.png") no-repeat center center;
+          background-size: 100% 100%;
+          position: relative;
+
+        }
+        .btnss{
+          background: url("../images/switch-open.png") no-repeat center center;
+          background-size: 100% 100%;
+        }
+        .spans{
+          position: absolute;
+          width: .36rem;
+          height: .36rem;
+          background: #fff;
+          border-radius: 50%;
+          left: .45rem;
+          transition: left 100ms ease-in;
+        }
+        .spanss{
+          left: .02rem;
+        }
+      }
+    }
+  }
+}

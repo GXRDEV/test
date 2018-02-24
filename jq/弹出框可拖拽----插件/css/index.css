@@ -1,0 +1,3 @@
+*{margin: 0;padding: 0}
+.em{float: right;cursor: pointer;background: #ccc;height: 30px;width: 30px;border-radius: 30px;text-align: center;line-height: 30px}
+body{position: relative;}

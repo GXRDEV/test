@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<link rel="stylesheet" href="css/index.css">
+<body>
+	<div id="box">
+		<div id="top">
+			<p id="tprve"><</p>
+			<ul id="top_ul">
+				<li><img src="images/1.jpg"></li>
+				<li><img src="images/2.jpg"></li>
+				<li><img src="images/3.jpg"></li>
+				<li><img src="images/4.jpg"></li>
+				<li><img src="images/5.jpg"></li>
+				<li><img src="images/6.jpg"></li>
+				<li><img src="images/7.jpg"></li>
+				<li><img src="images/8.jpg"></li>
+			</ul>
+			<p id="tnext">></p>
+		</div>
+		<div id="bottom">
+			<p id="bprve"><</p>
+			<ul id="bot_ul">
+				<li><img src="images/1.jpg"></li>
+				<li><img src="images/2.jpg"></li>
+				<li><img src="images/3.jpg"></li>
+				<li><img src="images/4.jpg"></li>
+				<li><img src="images/5.jpg"></li>
+				<li><img src="images/6.jpg"></li>
+				<li><img src="images/7.jpg"></li>
+				<li><img src="images/8.jpg"></li>
+			</ul>
+			<p id="bnext">></p>
+		</div>
+	</div>
+	<script src="js/jquery1.7.js"></script>
+	<script src="js/index1.js"></script>
+	<script>
+		$("#top").move({
+			ind:3,
+			speed:600,
+			prev:"tprve",
+			next:"tnext"
+		})
+		$("#bottom").move({
+			ind:4,
+			speed:400,
+			prev:"bprve",
+			next:"bnext"
+		})
+	</script>
+</body>
+</html>

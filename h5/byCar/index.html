@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/font-awesome.css">
+</head>
+<body>
+<div class="main">
+    <div class="header">
+        <span class="fa fa-chevron-left">微信</span>
+        <h1>申请0首付购车</h1>
+        <span class="fa fa-ellipsis-h"></span>
+    </div>
+    <div class="mains">
+        <div class="banner">
+            <img src="./images/banner_02.png" alt="">
+        </div>
+        <div class="center">
+            <dl>
+                <dt><img src="./images/dt_03.png" alt=""></dt>
+                <dd>申请条件</dd>
+            </dl>
+            <dl>
+                <dt><img src="./images/dt_05.png" alt=""></dt>
+                <dd>贷款材料</dd>
+            </dl>
+            <dl>
+                <dt><img src="./images/dt_07.png" alt=""></dt>
+                <dd>贷款流程</dd>
+            </dl>
+            <dl>
+                <dt><img src="./images/dt_09.png" alt=""></dt>
+                <dd>分期计算器</dd>
+            </dl>
+        </div>
+        <div class="section">
+            <ul>
+                <li><b>真实姓名</b><input type="text" placeholder="请填写您本人的真实姓名"></li>
+                <li><b>身份证号</b><input type="text" placeholder="请填写您本人身份证号"></li>
+                <li><b>社保卡号</b><input type="text" placeholder="社保卡号条形码下方的12位编码"></li>
+                <li><b>手机号码</b><input type="text" placeholder="请填写本人手机号"></li>
+                <li class="schools"><b>最高学历</b><span class="school">请选择</span><span class="fa fa-chevron-right"></span></li>
+                <li class="mon"><b>税后月薪</b><span  class="money">请选择</span><span class="fa fa-chevron-right"></span></li>
+                <li><b>单位全称</b><input type="text" placeholder="请填写单位名称"></li>
+                <li><b>单位座机</b><input type="text" placeholder="请填写工作单位座机号"></li>
+                <li><b>社保卡号</b><input type="text" placeholder="社保卡号条形码下方的12位编码"></li>
+                <li class="section-li">
+                    <b>近24个月内是否有逾期记录</b>
+                    <input type="radio" id="yes" name="radio"><label for="yes" class="lab">有</label><input type="radio" id="no" name="radio"><label for="no" class="lab">无</label>
+                </li>
+                <li>您的联系方式将被严格保密</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>申请0首付购车</p>
+        <p class="fa fa-phone"></p>
+    </div>
+    <div class="mark"></div>
+    <div class="money-box markbox">
+        <div class="money-head">
+            <span class="spanone">确认</span><p>选择月薪</p><span class="clear">取消</span>
+        </div>
+        <ul>
+            <li>3000-4999元</li>
+            <li>5000-7999元</li>
+            <li>8000-9999元</li>
+            <li>1万元以上</li>
+        </ul>
+    </div>
+    <div class="school-box markbox">
+        <div class="money-head">
+            <span class="spanones">确认</span><p>选择月薪</p><span class="clear">取消</span>
+        </div>
+        <ul>
+            <li>北大</li>
+            <li>清华</li>
+            <li>哈佛</li>
+            <li>南开</li>
+        </ul>
+    </div>
+</div>
+</body>
+<script src="./js/zepto.min.js"></script>
+<script>
+    document.documentElement.style.fontSize=document.documentElement.clientWidth/7.5+"px";
+    var str="";
+    $(".schools").on("tap",function(){
+        $(".mark").css("display","block");
+        $(".school-box").css("display","block");
+    });
+    $(".mon").on("tap",function () {
+        $(".mark").css("display","block");
+        $(".money-box").css("display","block");
+    });
+    $(".markbox li").on("tap",function(){
+        str=$(this).html();
+    });
+
+    $(".spanones").on("tap",function(){
+        $(".mark").css("display","none");
+        $(".school-box").css("display","none");
+        $(".school").html(str);
+    });
+    $(".spanone").on("tap",function(){
+        $(".mark").css("display","none");
+        $(".money-box").css("display","none");
+        $(".money").html(str);
+    });
+    $(".clear").on("tap",function () {
+        $(".mark").css("display","none");
+        $(".money-box").css("display","none");
+        $(".school-box").css("display","none");
+    })
+</script>
+</html>

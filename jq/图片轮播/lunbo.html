@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<link rel="stylesheet" href="css/lunbo.css">
+<body>
+	<div id="box">
+		<div id="box1">
+			<img src="images/img1.jpg" alt="">
+			<img src="images/img2.jpg" alt="">
+			<img src="images/img3.jpg" alt="">
+			<img src="images/img4.jpg" alt="">
+		</div>
+		<div id="btn">
+			<span class="left"><</span>
+			<span class="right">></span>
+		</div>
+		<div id="box2">
+			<span>1</span>
+			<span>2</span>
+			<span>3</span>
+			<span>4</span>
+		</div>
+	</div>
+	<script src="jq/jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			var ind=0
+			var w=$("#box img").outerWidth()
+			//alert(w)
+			var len=$("#box img").length
+			var time=null
+			$("#box1").width(w*(len+1))
+			$("#box2 span").eq(0).addClass("span").siblings().removeClass()
+
+			/*鼠标滑过*/
+			$("#box2").on("mouseover","span",function(){
+				ind=$(this).index()
+				tab(ind)
+			})
+			time=setInterval(move,1000)
+			/*移入移出*/
+			$("#box").hover(function(){
+				clearInterval(time)
+			},function(){
+				time=setInterval(move,1000)
+			})
+			/*点击左右按钮*/
+			$(".right").on("click",function(){
+				move()
+			})
+			$(".left").on("click",function(){
+				move1()
+			})
+			function tab(){
+				$("#box2 span").eq(ind).addClass("span").siblings().removeClass()
+				$("#box1").stop().animate({"marginLeft":-w*ind},600)
+			}
+
+			function move(){
+				if($("#box1").is(":animated"))return false
+				ind++
+				if(ind>len-1){
+					ind=0
+					$("#box1 img").first().clone().appendTo("#box1")
+					$("#box1").stop().animate({"marginLeft":-w*len},600,function(){
+						$("#box1 img").last().remove()
+						$("#box1").css("marginLeft",0)
+						
+					})
+					$("#box2 span").eq(ind).addClass("span").siblings().removeClass()
+				}else{
+					tab()
+				}
+			}
+			function move1(){
+				if($("#box1").is(":animated"))return false
+				ind--
+				if(ind<0){
+					ind=len-1
+					$("#box1 img").last().clone().prependTo("#box1")
+					$("#box1").css("marginLeft",-w)
+					$("#box1").stop().animate({"marginLeft":0},600,function(){
+						$("#box1 img").first().remove()
+						$("#box1").css("marginLeft",-w*(len-1))
+					})
+					$("#box2 span").eq(ind).addClass("span").siblings().removeClass()
+				}else{
+					tab()
+				}
+			}
+		})
+	</script>
+</body>
+</html>

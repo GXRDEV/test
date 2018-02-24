@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .cvs{
+        border: 10px solid #ccc;
+    }
+</style>
+<canvas width="1000" height="700" class="cvs"></canvas>
+<script>
+    var data = {
+        xAxis:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+        precipitation:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+        evaporation:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+    };
+
+
+    var canvas=document.querySelector(".cvs");
+    var cvs=canvas.getContext("2d");
+    cvs.strokeStyle="#999";
+    cvs.beginPath();
+    cvs.moveTo(50,50);
+    cvs.lineTo(50,650);
+    cvs.lineTo(950,650);
+    cvs.stroke();
+    cvs.closePath();
+
+    var j=0;
+    for(var i=0;i<=200;i+=20){
+        cvs.fillText(i,30,650-j*60);
+        j++
+    }
+    var len=data.xAxis.length;
+    for(var i=0;i<len;i++){
+        cvs.fillText(data.xAxis[i],100+i*70,680)
+    }
+    for(var i=0;i<len;i++){
+        cvs.beginPath();
+        cvs.lineWidth="25";
+        cvs.strokeStyle="blue";
+        cvs.moveTo(100+i*70,650);
+        cvs.lineTo(100+i*70,650-data.precipitation[i]*3);
+        cvs.closePath();
+        cvs.stroke();
+    }
+    for(var i=0;i<len;i++){
+        cvs.beginPath();
+        cvs.lineWidth="25";
+        cvs.strokeStyle="red";
+        cvs.moveTo(125+i*70,650);
+        cvs.lineTo(125+i*70,650-data.evaporation[i]*3);
+        cvs.closePath();
+        cvs.stroke();
+    }
+</script>
+</body>
+</html>

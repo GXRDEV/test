@@ -1,0 +1,10 @@
+*{margin: 0;padding:0 }
+#box{height: 454px;width: 730px;position: relative;margin: 0 auto;overflow: hidden;}
+#box1{height: 454px;position: absolute;}
+#box1 img{float: left;}
+#box2{position: absolute;bottom: 30px;left: 200px;cursor: pointer;}
+#box2 span{background: #ccc;height: 30px;width: 30px;text-align: center;line-height: 30px;border-radius: 30px;margin-left: 30px;float: left;}
+#btn span{position: absolute;top:200px;height: 50px;width: 30px;background: #ccc;text-align: center;line-height:50px;display: inline-block;border-radius: 30px;cursor: pointer;}
+#btn .left{left: 10px}
+#btn .right{right: 10px}
+#box2 .span{background:red}

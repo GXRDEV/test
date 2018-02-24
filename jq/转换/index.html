@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0}
+		#box{height: 300px;width: 600px;margin: 0 auto}
+		.left,.right{height:300px;width: 200px;box-shadow:3px 5px 10px #ccc;border: 1px solid #ccc;float: left;}
+		li{list-style: none;padding-left: 10px;margin-top: 17px}
+		p input{width: 40px;height: 25px}
+		p{float: left;margin: 100px 20px}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul class="left">
+			<li><input type="checkbox" value="1">li 1</li>
+			<li><input type="checkbox" value="2">li 2</li>
+			<li><input type="checkbox" value="3">li 3</li>
+			<li><input type="checkbox" value="4">li 4</li>
+			<li><input type="checkbox" value="5">li 5</li>
+			<li><input type="checkbox" value="6">li 6</li>
+			<li><input type="checkbox" value="7">li 7</li>
+		</ul>
+		<p>
+			<input type="button" value="添加" id="add">
+			<input type="button" value="删除" id="remove">
+		</p>
+		<ol class="right"></ol>
+	</div>
+	<script src="js/jquery1.7.js"></script>
+	<script>
+		$(function(){
+			var arr=[]
+			$("#add").on("click",function(){
+				/*把选中的checkbox赋予一个对象*/
+				var check=$(".left").find(":checked")
+				/*遍历*/
+				$.each(check,function(){
+					var vall=$(this).val()
+					console.log(vall)
+					var txt=$(this).parent().text()
+					/*把当前元素的父元素push给arr数组*/
+					if(arr.indexOf(vall)==-1){
+						arr.push(vall)
+						var lis="<li><input type='checkbox' value="+vall+">"+txt+"</li>"
+						$(".right").append(lis)
+					}
+				})
+			})
+			$("#remove").on("click",function(){
+				/*把选中的checkbox赋予一个对象*/
+				var check=$(".right").find(":checked")
+				$.each(check,function(){
+					var vall=$(this).val()
+					arr.splice(arr.indexOf(vall),1)
+					$(this).parent().remove()
+				})
+			})
+		})
+	</script>
+</body>
+</html>

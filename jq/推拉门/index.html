@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{margin: 0;padding: 0}
+	#box{height: 120px;position: relative;border: 1px solid #ccc;margin: 0 auto}
+	img{position: absolute;float: left;}
+</style>
+<body>
+	<div id="box">
+		<img src="images/1.png" alt="">
+		<img src="images/2.png" alt="">
+		<img src="images/3.png" alt="">
+		<img src="images/4.png" alt="">
+		<img src="images/5.png" alt="">
+		<img src="images/2.png" alt="">
+		<img src="images/3.png" alt="">
+		<img src="images/4.png" alt="">
+		<img src="images/5.png" alt="">
+		<img src="images/4.png" alt="">
+		<img src="images/6.png" alt="">
+
+	</div>
+	<script src="js/jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			/*获取图片的宽度*/
+			var w=$("img").width()
+			/*获取图片的个数*/
+			var len=$("img").length
+			/*将最后一张图片定位*/
+			$("img").eq(len-1).css("right",0)
+			/*确定间距*/
+			var margins=40
+			/*除去最后一张图片的其余图片的集合*/
+			var imgs=$("img").not($("img").eq(len-1))
+			/*计算出盒子的宽度*/
+			$("#box").width(660+margins*(imgs.length-1))
+			/*实现排版*/
+			$.each(imgs,function(i){
+				if(i==0){
+					$(this).css("margin-left",0)
+				}else{
+					$(this).css("margin-left",330+margins*(i-1))
+				}
+			})
+			/*图片划过实现的效果*/
+			$("#box").on("mouseover","img",function(){
+				/*将第一张图片除去的集合*/
+				var img1=$(imgs).slice(1,$(this).index()+1)
+				img1.stop().animate({"left":-w+margins})
+				imgs.not(img1).stop().animate({"left":0})
+			})
+		})
+	</script>
+</body>
+</html>

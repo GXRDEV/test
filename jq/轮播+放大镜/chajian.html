@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<link rel="stylesheet" href="css/index.css">
+<body>
+	<div id="box">
+		<div id="top">
+			<div id="max">
+				<span class="mark"></span>
+			</div>
+			<div id="right"></div>
+		</div>
+		<div id="min">
+			<ul>
+				<li><img src="images/1.jpg" alt=""></li>
+				<li><img src="images/2.jpg" alt=""></li>
+				<li><img src="images/3.jpg" alt=""></li>
+				<li><img src="images/4.jpg" alt=""></li>
+				<li><img src="images/5.jpg" alt=""></li>
+			</ul>
+			<p class="left"><</p>
+			<p class="right">></p>
+		</div>
+	</div>
+	<script src="js/jquery1.7.js"></script>
+	<script src="js/chajian.js"></script>
+	<script>
+		$("#min").move({
+			ind:1,
+			prev:".left",
+			next:".right",
+			max:"#max",
+			right:"#right",
+			img:"#min img",
+			mark:".mark"
+		})
+	</script>
+</body>
+</html>

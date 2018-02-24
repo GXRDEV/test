@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0}
+		.box{height:400px;width: 600px;margin: 0 auto}
+		.left,.right{border: 1px solid #ccc;box-shadow: 3px 5px 10px #ccc;height: 400px;width:200px;float: left;}
+		.left,.right li{list-style: none;line-height: 55px;font-size: 22px;padding-left: 10px}
+		.center{float: left;margin:200px 10px}
+		.center input{width: 40px}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<ul class="left">
+			<li><input type="checkbox" value="1">li 1</li>
+			<li><input type="checkbox" value="2">li 2</li>
+			<li><input type="checkbox" value="3">li 3</li>
+			<li><input type="checkbox" value="4">li 4</li>
+			<li><input type="checkbox" value="5">li 5</li>
+			<li><input type="checkbox" value="6">li 6</li>
+			<li><input type="checkbox" value="7">li 7</li>
+		</ul>
+		<p class="center">
+			<input type="button" value="添加" class="add">
+			<input type="button" value="删除" class="dele">
+		</p>
+		<ol class="right"></ol>	
+	</div>
+	<script src="js/jquery1.7.js"></script>
+	<script>
+		$(function(){
+			//add
+			//首先创建一个空数组
+			var arr=[]
+			$(".add").on("click",function(){
+				var check=$(".left").find(":checked")
+				if(check.length==0)return false
+				$.each(check,function(){
+					var vall=$(this).val()
+					var txt=$(this).parent().text()
+					if(arr.indexOf(vall)==-1){
+						arr.push(vall)
+						var lis="<li><input type='checkbox' value="+vall+">"+txt+"</li>"
+						$(".right").append(lis)
+					}
+
+				})
+			})
+
+			//dele
+			$(".dele").on("click",function(){
+				var check=$(".right").find(":checked")
+				if(check.length==0)return false
+				$.each(check,function(){
+					var vall=$(this).val()
+					var txt=$(this).parent().text()
+					//arr.splice(arr.indexOf(vall),1)
+					if(arr.indexOf(vall)!=-1){
+						arr.splice(arr.indexOf(vall),1)
+					}
+					$(this).parent().remove()
+				})
+			})
+		})
+	</script>
+</body>
+</html>

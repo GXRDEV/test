@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{margin: 0;padding: 0}
+	.max{height: 150px;width: 810px;border: 1px solid #ccc;margin: 0 auto;padding: 10px;padding-right: 0}
+	.min{height: 150px;width: 150px;border: 1px solid #ccc;float: left;margin-right: 10px}
+	.box{height: 150px;width: 150px;border:1px dashed red;position: absolute;margin-right: 10px;background: #ccc;opacity: 0.5}
+	.add{height: 150px;width: 150px;border: 1px dashed green;float: left;margin-right: 10px}
+</style>
+<body>
+	<div class="max">
+		<div class="min">1</div>
+		<div class="min">2</div>
+		<div class="min">3</div>
+		<div class="min">4</div>
+		<div class="min">5</div>
+	</div>
+	<script src="js/jquery1.7.js"></script>
+	<script>
+		$(function(){
+			var move=false
+			var minopc={x:0,y:0}
+			var moveopc={x:0,y:0}
+			$(".min").each(function(){
+				$(this).on("mousedown",function(e){
+					move=true
+					thisbox=$(this)
+					minopc.x=$(this).offset().left
+					minopc.y=$(this).offset().top
+					$(this).removeClass().addClass("box")
+					$("<div class='add'></div>").insertBefore($(this))
+					$(this).css({"left":minopc.x,"top":minopc.y})
+
+					moveopc.x=e.pageX-minopc.x
+					moveopc.y=e.pageY-minopc.y
+				})
+			})
+			$(document).on("mousemove",function(e){
+				if(move==false) return false
+				var moveopc1={x:0,y:0}
+				moveopc1.x=e.pageX-moveopc.x
+				moveopc1.y=e.pageY-moveopc.y
+				thisbox.css({"left":moveopc1.x,"top":moveopc1.y})
+				var allbox=$(".min")
+				
+				allbox.each(function(){
+					var This=$(this)
+					var cen=This.offset().left+This.outerWidth()/2
+					var drig=thisbox.offset().left+thisbox.outerWidth()
+					if(drig>=cen){
+						This.after($(".add"))
+					}
+					var fir=allbox.first()
+					var first=fir.offset().left+fir.outerWidth()/2
+					if(thisbox.offset().left<=first){
+						$(".add").insertBefore(fir)
+					}
+				})
+			})
+		})
+	</script>
+</body>
+</html>

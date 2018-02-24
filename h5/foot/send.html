@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/send.css">
+</head>
+<body>
+    <div class="content">
+        <div class="header">
+            <span class="head-span">返回</span>
+            <p>配送信息</p>
+            <span class="fa fa-ellipsis-h"></span>
+        </div>
+        <div class="section">
+            <div class="top">
+                <span><img src="./images/tus_03.jpg" alt=""></span>
+                <p>请告诉小可您的配送信息</p>
+            </div>
+            <ul>
+                <li>
+                    <span>配送地址</span>
+                    <input type="text" placeholder="大恒科技大厦">
+                    <i>></i>
+                </li>
+                <li>
+                    <span>联系人</span>
+                    <input type="text" placeholder="苏先生">
+                    <i>></i>
+                </li>
+                <li>
+                    <span>联系电话</span>
+                    <input type="text" placeholder="12345678912">
+                    <i>></i>
+                </li>
+            </ul>
+            <div class="btn">
+                保存配送信息
+            </div>
+        </div>
+    </div>
+    <script src="./js/zepto.min.js"></script>
+    <script>
+        document.documentElement.style.fontSize=document.documentElement.clientWidth/7.5+"px"
+        $(".head-span").on("tap",function () {
+            window.location="./app.html";
+        })
+    </script>
+</body>
+</html>

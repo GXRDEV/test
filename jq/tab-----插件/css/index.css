@@ -1,0 +1,8 @@
+*{margin: 0;padding: 0}
+#box{height: 500px;width: 500px;margin: 0 auto;border: 1px solid #ccc;overflow: hidden;}
+#top{height: 40px;border: 1px solid #ccc;background: #ccc}
+#top .aa{background: #fff}
+#top li{list-style: none;float: left;text-align: center;line-height: 40px;width:65px;cursor: pointer}
+#top p{color:#fff;display: inline-block;text-align: center;line-height: 40px;width:65px;margin-left:8px;cursor: pointer;}
+#bottom{clear: both}
+#bottom div{height: 458px;width: 500px;border: 1px solid #ccc;float: left;font-size: 30px}

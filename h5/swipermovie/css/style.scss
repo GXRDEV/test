@@ -1,0 +1,74 @@
+@import "./reset.scss";
+@import "./common.scss";
+@import "./swiper.css";
+body{
+  font-size: 16px;
+}
+.main{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .header{
+    background: #d80a1e;
+    color: #fff;
+    display: flex;
+    height: 1.13rem;
+    flex-direction: column;
+    padding: 0 .19rem;
+    .h-top{
+      height: .66rem;
+      position: relative;
+      h1{
+        font-size: .28rem;
+        text-align: center;
+        line-height: .66rem;
+        margin-top: 0;
+      }
+      span:nth-child(1){
+        position: absolute;
+        font-size: .24rem;
+        top: .2rem;
+        @include downArrow($color:#fff,$bjcolor:#d80a1e,$top:.07rem,$tops:.04rem,$left:.6rem,$size:.1rem)
+      }
+      span:nth-child(3){
+        position: absolute;
+        right: 0;
+        top: .2rem;
+        width: .3rem;
+        height: .3rem;
+        font-size: .14rem;
+        line-height: .3rem;
+        text-align: center;
+        border-radius: 50%;
+        border: 1px solid #fff;
+        transform: rotate(180deg);
+      }
+    }
+    .h-dowm{
+      margin-top: .08rem;
+      font-size: .18rem;
+    }
+  }
+  .section{
+    overflow: auto;
+    .nav{
+      height: 2.44rem;
+      width: 100%;
+      background: #c5c5c5;
+      padding: .3rem;
+      padding-right: 0;
+
+      ul{
+        li{
+          width: 1.3rem;
+          float: left;
+          margin-right: .1rem;
+        }
+        .active{
+          transform:scale(1.14);
+          margin: 0  .2rem 0 .1rem;
+        }
+      }
+    }
+  }
+}

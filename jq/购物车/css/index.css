@@ -1,0 +1,12 @@
+*{margin: 0;padding: 0}
+#box{height: 960px;width: 900px;margin: 0 auto;border: 1px solid #ccc;position: relative;}
+#box .box1{height: 300px;border: 1px solid #ccc}
+#box img{height: 300px;width: 300px}
+dl{float: left;width: 500px;height: 300px}
+dl dt{float: left;}
+.box2{float: right;}
+.box2 input{height:23px;width: 60px;padding-top: 4px}
+.box2 a{text-decoration: none;}
+.box2 .btn{padding-top: 10px}
+.box2 span{height: 30px;width: 30px;text-align: center;line-height: 30px;border: 1px solid #ccc;display: inline-block;cursor: pointer;margin: 0 10px}
+.bottom{bottom: 15px;position: absolute;}

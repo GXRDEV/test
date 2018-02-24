@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/font-awesome.css">
+</head>
+<body>
+    <div class="box">
+        <div class="header">
+            <ul>
+                <li class="fa fa-bars"></li>
+                <li>
+                    <p>
+                        <span class="header-span">热点</span>
+                        <span class="header-span">关注</span>
+                    </p>
+                </li>
+                <li class="fa fa-cog"></li>
+            </ul>
+        </div>
+        <div class="section">
+            <div class="nav">
+                <ul>
+                    <li class="nav-li lis"><a href="javascript:;;">足球现场</a></li>
+                    <li class="nav-li"><a href="javascript:;;">足球生活</a></li>
+                    <li class="nav-li"><a href="javascript:;;">足球美女</a></li>
+                </ul>
+            </div>
+            <div class="section-main">
+                <div class="section-box box1"></div>
+                <div class="section-box">asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br></div>
+                <div class="section-box">asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asd</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asd</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br>asdas</br></div>
+            </div>
+        </div>
+        <div class="footer">
+            <ul>
+                <li>
+                    <p class="fa fa-home"></p>
+                    <p>首页</p>
+                </li>
+                <li>
+                    <p class="fa fa-search"></p>
+                    <p>发现</p>
+                </li>
+                <li>
+                    <p class="fa fa-camera"></p>
+                </li>
+                <li>
+                    <p class="fa fa-user"></p>
+                    <p>我的</p>
+                </li>
+                <li>
+                    <p class="fa fa-outdent"></p>
+                    <p>退出</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="./js/jquery-1.11.1.js"></script>
+        <script>
+            var sectionmain=document.querySelector(".section-main");
+            document.documentElement.style.fontSize=document.documentElement.clientWidth/2.71+"px"
+            var w=$(document).width();
+            var len=$(".section-box").length;
+            var start,move,end,spans=0,ind=0,starTime,endTime,times,startY,endY,moveY,spanY=0;
+            $(".header-span").on("click",function(){
+                $(this).addClass("opacitys").siblings().removeClass("opacitys")
+            });
+            $(".section-main").width(w*len);
+            $(".section-box").width(w);
+            sectionmain.addEventListener("touchstart",function(e){
+                starTime=new Date();
+                start=e.touches[0].pageX;
+                startY=e.touches[0].pageY;
+                $(".section-main").removeClass("moves");
+            });
+            sectionmain.addEventListener("touchmove",function(e){
+                moveY=e.touches[0].pageY;
+                move=e.touches[0].pageX;
+                end=move-start+spans;
+                endY=moveY-startY;
+            });
+            sectionmain.addEventListener("touchend",function(){
+                spans=end;
+                endTime=new Date();
+                console.log("X"+Math.abs(end));
+                console.log("Y"+Math.abs(endY));
+                times=endTime-starTime;
+                if(Math.abs(move-start)>Math.abs(endY)){
+                    if(Math.abs(end)>w/2 || times<200&&times>10&&Math.abs(end)>10){
+                        if(move-start<0){
+                            ind++;
+                            if(ind>len-1){
+                                ind=len-1;
+                            }
+                        }else{
+                            ind--;
+                            if(ind<0){
+                                ind=0
+                            }
+                        }
+                        movea(ind);
+                        $(".section-main").addClass("moves");
+                    }
+                }
+                end=0;
+            });
+            function movea(ind) {
+                sectionmain.style.transform="translate3d("+(-w*ind)+"px,0,0)";
+                $(".nav-li").eq(ind).addClass("lis").siblings().removeClass("lis");
+            }
+            $(".nav-li").on("click",function () {
+                $(this).addClass("lis").siblings().removeClass("lis");
+                ind=$(this).index();
+                movea(ind)
+            })
+            $.ajax({
+                type:"POST",
+                url:"livelist.json",
+                dataType:"json",
+                success:function(datas){
+                   var data=datas.data;
+                    var uls;
+                    for(var i in data){
+                        var str="";
+                        for(var j in data[i]){
+                            str+="<li><p><img src='"+data[i][j].img+"'/></p><p>"+data[i][j].title+"</p></li>"
+                        }
+                        $("<ul></ul>").html(str).appendTo($(".box1"));
+                    }
+                }
+
+            })
+        </script>
+</body>
+</html>

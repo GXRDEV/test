@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{margin: 0;padding: 0}
+	#box{position: relative;width: 1600px;margin:0 auto}
+	img{position: absolute;}
+</style>
+<body>
+	<div id="box">
+		<img src="images/3.jpg" alt="">
+		<img src="images/2.jpg" alt="">
+		<img src="images/4.jpg" alt="">
+		<img src="images/1.jpg" alt="">
+		<img src="images/5.jpg" alt="">
+		<img src="images/6.jpg" alt="">
+		<img src="images/7.jpg" alt="">
+		<img src="images/8.jpg" alt="">
+		<img src="images/9.jpg" alt="">
+		<img src="images/10.jpg" alt="">
+		<img src="images/5.jpg" alt="">
+		<img src="images/6.jpg" alt="">
+		<img src="images/7.jpg" alt="">
+	</div>
+	<script src="js/jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			var w=$("#box img").width()+20
+			var len=parseInt($("#box").width()/w)
+			var arr=[]
+			var p=0
+			function pai(star,end){
+				for(var i=star;i<end;i++){
+					var h=$("#box img").eq(i).height()+20
+					if(i<len){
+						arr.push(0)
+					}
+					var minh=Math.min.apply(Math,arr)
+					var minindex=arr.indexOf(minh)
+					$("#box img").eq(i).stop().animate({"left":minindex*w,"top":minh})
+					arr[minindex]+=h
+					p++
+				}
+				console.log(minindex)
+			}
+			pai(0,$("#box img").length)
+			function move(){
+				/*var da={"dat":[
+					{"src":"images/7.jpg"},
+					{"src":"images/8.jpg"},
+					{"src":"images/9.jpg"},
+					{"src":"images/10.jpg"},
+					{"src":"images/11.jpg"},
+					{"src":"images/12.jpg"},
+					{"src":"images/8.jpg"},
+					{"src":"images/6.jpg"},
+					{"src":"images/5.jpg"},
+					{"src":"images/3.jpg"}
+				]}*/
+				pai(p,$("#box img").length)
+				var maxh=Math.max.apply(Math,arr)
+				var maxIndex=arr.indexOf(maxh)
+				/*$.each(da.dat,function(i,vall){
+					$("<img>").attr(vall).css({"left":maxIndex*w,"top":maxh}).appendTo("#box")
+				})*/
+				for(var i=0;i<=12;i++){
+					$("#box").find("img").eq(i).clone().css({"left":maxIndex*w,"top":maxh}).appendTo("#box")
+				}
+			}
+			$(window).on("scroll",function(){
+				var sch=$(document).height()-$(window).height()
+				if($(window).scrollTop()>=sch){
+					move()
+				}
+			})
+			
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<link rel="stylesheet" href="css/index.css">
+<body>
+	<div id="box">
+		<div class="box1">
+			<dl>
+				<dt><img src="images/img1.jpg" alt=""></dt>
+				<dd>
+					<p>《全民畅饮》</p>
+				</dd>
+			</dl>
+			<div class="box2">
+				<p class="price">单价:<a href="javascript:;;">￥300</a></p>
+				<p class="btn">
+					<span class="remove1">-</span><input type="text" value="1"><span class="add1">+</span>
+				</p>
+				
+			</div>
+		</div>
+		<div class="box1">
+			<dl>
+				<dt><img src="images/img2.jpg" alt=""></dt>
+				<dd>
+					<p>《空调手机》</p>
+				</dd>
+			</dl>
+			<div class="box2">
+				<p class="price">单价:<a href="javascript:;;">￥100</a></p>
+				<p class="btn">
+					<span class="remove1">-</span><input type="text" value="1"><span class="add1">+</span>
+				</p>
+				
+			</div>
+		</div>
+		<div class="box1">
+			<dl>
+				<dt><img src="images/img3.jpg" alt=""></dt>
+				<dd>
+					<p>《一元抢宝》</p>
+				</dd>
+			</dl>
+			<div class="box2">
+				<p class="price">单价:<a href="javascript:;;">￥150</a></p>
+				<p class="btn">
+					<span class="remove1">-</span><input type="text" value="1"><span class="add1">+</span>
+				</p>
+				
+			</div>
+		</div>
+		<div class="bottom">
+			<span>购买物品</span><input type="text" class="txt1">
+			<span>总价</span><input type="text" class="txt2">
+		</div>
+	</div>
+	<script src="js/jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			
+			$(".btn .add1").on("click",function(){
+				var price1=parseInt($(this).prev().val())
+				if(price1<10){
+					price1++
+				}
+				$(this).prev().val(price1)
+				sumprice()
+				
+			})
+			$(".btn .remove1").on("click",function(){
+				var price1=parseInt($(this).next().val())
+				price1--
+				if(price1<1){
+					$(this).next().val(price1=1)
+					var ce=confirm("确认删除吗")
+					if(ce){
+						$(this).parents(".box1").remove()
+					}
+					sum()
+				}
+				sumprice()
+				$(this).next().val(price1)
+			})
+			$(".btn input").on("change",function(){
+				sumprice()
+			})
+			function sum(){
+				var sum1=$(".box1").length
+				$(".txt1").val(sum1)
+			}
+			sum()
+			function sumprice(){
+				var price2=0
+				var sumprice1=0
+				$(".btn input").each(function(){
+					price2=$(this).parents(".box2").find("a").text().slice(1)
+					sumprice1+=$(this).val()*price2
+				})
+				$(".txt2").val(sumprice1)
+			}
+			sumprice()
+		})
+	</script>
+</body>
+</html>

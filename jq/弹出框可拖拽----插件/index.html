@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<link rel="stylesheet" href="css/index.css">
+<body>
+	<input type="button" value="按钮一" id="btn1">
+	<input type="button" value="按钮二" id="btn2">
+	<input type="button" value="按钮三" id="btn3">
+	<script src="js/jquery1.7.js"></script>
+	<script src="js/index.js"></script>
+	<script>
+		$("#btn1").change({
+			left:200,
+			top:200,
+			width:300,
+			height:300,
+			color:"red",
+			text:"我是box1",
+			id:"box1",
+			delo:true
+		})
+		$("#btn2").change({
+			left:800,
+			top:200,
+			width:200,
+			height:300,
+			color:"green",
+			text:"我是box2",
+			id:"box2",
+			delo:true
+		})
+		$("#btn3").change({
+			left:1200,
+			top:300,
+			width:400,
+			height:200,
+			color:"blue",
+			text:"我是box3",
+			id:"box3",
+			
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{margin: 0;padding: 0}
+	.uls{list-style: none;position: relative;height: 149px;overflow: hidden;}
+	.uls li{float: left;position: absolute}
+	.uls li span{display: inline-block;height: 149px;width: 30px;background: #ccc;float: left;}
+	.uls li img{width: 148px;height: 149px}
+	.uls .spans{background: red}
+</style>
+<body>
+	<ul class="uls">
+		<li>
+			<span class="spans">郭祥然</span>
+			<img src="images/er.png" alt="">
+		</li>
+		<li>
+			<span>郭祥然</span>
+			<img src="images/er1.png" alt="">
+		</li>
+		<li>
+			<span>郭祥然</span>
+			<img src="images/er2.png" alt="">
+		</li>
+	</ul>
+	<script src="js/jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			var lis=$("li")
+			var len=30
+			$(".uls").css("width",lis.length*len+151)
+			$.each(lis,function(i){
+				if(i==0){
+					$(this).css("margin-left",0)
+				}else{
+					$(this).css("margin-left",len*i+150)
+				}
+			})
+			$(".uls").on("mouseover","li",function(){
+				$(this).find("span").addClass("spans").parent().siblings().find("span").removeClass("spans")
+				var index1=lis.slice(1,$(this).index()+1)
+				index1.stop().animate({"left":-152+index1.length},500)
+				lis.not(index1).stop().animate({"left":0},500)
+			})
+		})
+	</script>
+</body>
+</html>

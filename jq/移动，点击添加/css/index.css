@@ -1,0 +1,4 @@
+*{margin: 0;padding: 0}
+.box{height: 500px;width: 500px;border: 1px solid #ccc;margin:  0 auto;padding: 30px;padding-right: 0;}
+li{list-style: none;border: 1px solid #ccc;float: left;width: 100px;height: 100px;margin-right: 15px}
+.bottom{clear:both;height: }

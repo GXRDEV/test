@@ -1,0 +1,19 @@
+@mixin downArrow($color:#fff,$bjcolor:#000,$top:0px,$tops:1px,$left:0px,$size:.6rem){
+  &:after{
+    content: "";
+    position: absolute;
+    border: $size solid transparent;
+    border-top-color: $color;
+    top: $top;
+    left: $left;
+  }
+  &:before{
+    content: "";
+    position: absolute;
+    border: $size solid transparent;
+    border-top-color: $bjcolor;
+    top: $tops;
+    left: $left;
+    z-index: 10;
+  }
+}

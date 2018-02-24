@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<link rel="stylesheet" href="css/index.css">
+<body>
+	<h1 class="red">红色区</h1>
+	<div class="redBox"></div>
+	<h1 class="blue">蓝色区</h1>
+	<div class="blueBox"></div>
+	<button class="clear">清除</button>
+	<button class="star">开始</button>
+	<button class="end">结束</button>
+	<script src="js/jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			var arr1=[],arr2=[],str1="",str2="",time=null;
+			for(var i=1;i<=33;i++){
+				if(i<=16){
+					arr2.push(i)
+				}
+				arr1.push(i)
+			}
+			console.log(arr1)
+			console.log(arr2)
+			$.each(arr1,function(i,vall){
+				var arr=vall<10?"0"+vall:vall
+				str1+="<span>"+arr+"</span>"
+				$(".redBox").html(str1)
+			})
+			$.each(arr2,function(i,vall){
+				var arr=vall<10?"0"+vall:vall
+				str2+="<span>"+arr+"</span>"
+				$(".blueBox").html(str2)
+			})
+			function rand(){
+				var arr3=[]
+				$(".redBox span").removeClass("redbox")
+				$(".blueBox span").removeClass("bluebox")
+				for(var i=0;arr3.length<6;i++){
+					var num=Math.ceil(Math.random()*33)
+					if(arr3.indexOf(num)==-1){
+						arr3.push(num)
+						$(".redBox span").eq(num-1).addClass("redbox")
+					}
+				}
+				var num1=Math.ceil(Math.random()*16)
+				$(".blueBox span").eq(num1-1).addClass("bluebox")
+			}
+			$(".star").on("click",function(){
+				time=setInterval(rand,100)
+				$(this).prop("disabled",true)
+			})
+			$(".end").on("click",function(){
+				clearInterval(time)
+				$(".star").prop("disabled",false)
+			})
+			$(".clear").on("click",function(){
+				$(".redBox span").removeClass("redbox")
+				$(".blueBox span").removeClass("bluebox")
+				clearInterval(time)
+				$(".star").prop("disabled",false)
+			})
+		})
+		/*var a=10
+		function n(){
+			setTimeout(function(){
+				a=20
+			},3)
+			
+			a=30
+			setTimeout(function(){
+				a=40
+			},3)
+			console.log(a)
+		}
+		n()*/
+
+	</script>
+</body>
+</html>

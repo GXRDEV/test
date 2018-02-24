@@ -1,0 +1,174 @@
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-backface-visibility: hidden; }
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+  margin: 0;
+  padding: 0; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+  table th, table td {
+    vertical-align: top; }
+
+fieldset, img {
+  border: 0; }
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%; }
+
+em, strong, b, i {
+  font-style: normal;
+  font-weight: normal; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  font-size: 100%; }
+
+body, input, button, textarea {
+  font-family: sans-serif,Helvetica; }
+
+input {
+  border: none; }
+
+a {
+  text-decoration: none;
+  outline: none; }
+
+a:hover {
+  cursor: pointer; }
+
+html, body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  height: 100%;
+  width: 100%;
+  color: #333;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased; }
+
+body {
+  position: relative;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden; }
+
+ul, ol {
+  list-style-type: none; }
+  ul li, ol li {
+    list-style: none; }
+
+a, input, textarea, select {
+  outline: 0;
+  -webkit-appearance: none;
+  font-size: 100%;
+  border: 1px solid #fefefe; }
+
+a {
+  color: #333;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent; }
+  a:active {
+    color: #1a1a1a; }
+
+::-webkit-input-placeholder {
+  color: #cacaca; }
+
+input:-moz-placeholder {
+  color: #cacaca; }
+
+body {
+  font-size: 16px; }
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column; }
+  .content .header {
+    height: .42rem;
+    border-bottom: 1px solid #b0b0b0;
+    text-align: center; }
+    .content .header span {
+      color: #a49a99;
+      line-height: .42rem;
+      position: relative;
+      font-size: .18rem; }
+    .content .header span:nth-child(1) {
+      position: absolute;
+      left: .27rem;
+      color: #75caf3; }
+    .content .header span:nth-child(3) {
+      position: absolute;
+      right: .2rem;
+      color: #75caf3; }
+  .content .section {
+    padding-top: .3rem;
+    padding: .3rem .15rem 0 .15rem; }
+    .content .section ul li {
+      margin-bottom: .16rem;
+      height: .36rem;
+      line-height: .36rem; }
+      .content .section ul li .number {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #d4d4d4;
+        font-size: .1rem;
+        color: #999999; }
+      .content .section ul li .btn {
+        background: #ccc;
+        font-size: .14rem;
+        width: 100%;
+        height: 100%;
+        color: #fff; }
+      .content .section ul li .btna {
+        background: #e84a47; }
+      .content .section ul li .radiobtn {
+        display: inline-block;
+        font-size: .12rem;
+        color: #999;
+        background: url("../images/yuan_03.png") no-repeat left center;
+        background-size: .16rem .16rem;
+        padding-left: .16rem; }
+      .content .section ul li input[type="radio"]:checked + .radiobtn {
+        background: url("../images/chekicon.png") no-repeat left center;
+        background-size: .16rem .16rem; }
+    .content .section ul li:nth-child(2) {
+      border: 1px solid #d4d4d4; }
+      .content .section ul li:nth-child(2) .admin {
+        width: 70%;
+        font-size: .1rem;
+        color: #999; }
+      .content .section ul li:nth-child(2) .btns {
+        width: .83rem;
+        height: 100%;
+        float: right;
+        border-radius: .18rem;
+        background: url("../images/switch-hidden.png") no-repeat center center;
+        background-size: 100% 100%;
+        position: relative; }
+      .content .section ul li:nth-child(2) .btnss {
+        background: url("../images/switch-open.png") no-repeat center center;
+        background-size: 100% 100%; }
+      .content .section ul li:nth-child(2) .spans {
+        position: absolute;
+        width: .36rem;
+        height: .36rem;
+        background: #fff;
+        border-radius: 50%;
+        left: .45rem;
+        transition: left 100ms ease-in; }
+      .content .section ul li:nth-child(2) .spanss {
+        left: .02rem; }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,8 @@
+*{margin: 0;padding: 0}
+.red{background: red}
+span{height:50px;width: 50px;text-align: center;line-height: 50px;display: inline-block;margin: 20px 80px;border-radius:100px}
+div{height: auto}
+.blue{background: blue}
+.redbox{background: red}
+.bluebox{background: blue}
+button{height:60px;width: 120px;font-size: 30px;text-align: center;}
